@@ -1,7 +1,8 @@
 import 'package:e_commerce_intern/utls/app_constant.dart';
-import 'package:e_commerce_intern/view/auth/custom_button.dart';
-import 'package:e_commerce_intern/view/auth/custom_textfield.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e_commerce_intern/view/auth/register_screen/register_screen.dart';
+import 'package:e_commerce_intern/view/auth/shared/custom_button.dart';
+import 'package:e_commerce_intern/view/auth/shared/custom_textfield.dart';
+import 'package:e_commerce_intern/view/auth/shared/sign_in_sign_up.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -82,17 +83,9 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height*0.03,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Don\' have an account?  ',style: TextStyle(
-                      fontWeight: FontWeight.bold
-                    ),),
-                    Text('SignUp ',style: TextStyle(
-                      color: ConstantApp.greenColor
-                    ),),
-                  ],
-                ),
+             SignInSignUp(route_name: RegisterScreen.id, txt1:
+                 'Don’t have an account? '
+                 , txt2: 'Singup')
 
 
               ],
