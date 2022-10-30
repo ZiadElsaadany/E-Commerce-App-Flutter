@@ -67,7 +67,7 @@ static const String id ='register';
                 CustomTextField(
                   labelText: 'Password',
                   hintText:'Enter your password' ,
-                  suffixIcon: Icon  ( Icons.visibility),
+                  suffixIcon: true,
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height*0.02,

@@ -1,9 +1,10 @@
-import 'package:e_commerce_intern/utls/app_constant.dart';
+
 import 'package:e_commerce_intern/view/auth/register_screen/register_screen.dart';
 import 'package:e_commerce_intern/view/auth/shared/custom_button.dart';
 import 'package:e_commerce_intern/view/auth/shared/custom_textfield.dart';
 import 'package:e_commerce_intern/view/auth/shared/sign_in_sign_up.dart';
 import 'package:flutter/material.dart';
+
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -59,7 +60,7 @@ class LoginScreen extends StatelessWidget {
              CustomTextField(
                labelText: 'Password',
                hintText:'Enter your password' ,
-               suffixIcon: Icon  ( Icons.visibility),
+               suffixIcon:true
              ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height*0.02,

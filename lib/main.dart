@@ -3,8 +3,9 @@ import 'package:e_commerce_intern/view/auth/register_screen/register_screen.dart
 import 'package:e_commerce_intern/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
+
 void main (   ) {
-  runApp(Ecommerce());
+  runApp( Ecommerce());
 }
 class Ecommerce extends StatelessWidget {
   const Ecommerce({Key? key}) : super(key: key);
