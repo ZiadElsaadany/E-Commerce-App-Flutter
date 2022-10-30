@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utls/app_constant.dart';
+import '../../../utls/app_constant.dart';
 
 class CustomButton extends StatelessWidget {
    CustomButton({Key? key,required this.word}) : super(key: key);
