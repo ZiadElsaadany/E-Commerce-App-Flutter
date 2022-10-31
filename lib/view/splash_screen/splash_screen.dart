@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:e_commerce_intern/view/auth/login_screen/login_screen.dart';
+import 'package:e_commerce_intern/view/onboarding_screen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   late Timer timer ;
 
-  goNext( )=> Navigator.pushReplacementNamed(context,LoginScreen.id );
+  goNext( )=> Navigator.pushReplacementNamed(context,OnBoardingScreen.id );
 
   startDelay(){
     timer=Timer(const Duration(
