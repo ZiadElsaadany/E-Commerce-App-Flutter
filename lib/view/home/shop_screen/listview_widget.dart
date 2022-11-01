@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/card_widget.dart';
+import '../../card_details/card_widget.dart';
 
 class ListViewWidget extends StatelessWidget {
   const ListViewWidget({Key? key,required this.img}) : super(key: key);

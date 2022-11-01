@@ -5,20 +5,18 @@ class SearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return    Container(
-      padding: const EdgeInsets.all(15),
-      margin: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-      decoration:BoxDecoration(
-          color: const Color(0xffF2F3F2),
-          borderRadius: BorderRadius.circular(15)
-      ),
-      child: Row(
-        children: const [
-          Icon(Icons.search) ,
-          Text('Search Store',style: TextStyle(
-              fontSize: 18
-          ),),
-        ],
+    return    Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: TextFormField(
+        decoration: InputDecoration(
+          prefixIcon: Icon(Icons.search,size: 30,),
+          hintText:'Search for store' ,
+          labelText: 'Search for store',
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+
+          ),
+        ),
       ),
     );
   }

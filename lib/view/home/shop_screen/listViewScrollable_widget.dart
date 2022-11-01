@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/card_widget.dart';
+import '../../card_details/card_widget.dart';
 
 class ListViewScrollable extends StatelessWidget {
   const ListViewScrollable({Key? key}) : super(key: key);
@@ -14,8 +14,8 @@ class ListViewScrollable extends StatelessWidget {
 
         options: CarouselOptions(
           height: 400,
-          aspectRatio: 50/9,
-          viewportFraction: 0.5,
+          aspectRatio: 40/20,
+          viewportFraction: 0.4,
           initialPage: 0,
           enableInfiniteScroll: true,
           reverse: false,

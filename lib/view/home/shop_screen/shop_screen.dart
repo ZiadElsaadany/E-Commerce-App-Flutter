@@ -4,7 +4,7 @@ import 'package:e_commerce_intern/view/home/shared_/search_widget.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/listViewScrollable_widget.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/listview_widget.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/title_widget.dart';
-import 'package:e_commerce_intern/view/widgets/card_widget.dart';
+import 'package:e_commerce_intern/view/card_details/card_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
