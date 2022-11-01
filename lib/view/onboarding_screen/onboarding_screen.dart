@@ -1,5 +1,6 @@
 
 import 'package:e_commerce_intern/view/auth/login_screen/login_screen.dart';
+import 'package:flutter/cupertino.dart';
 
 
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ static const String id = 'onBoarding' ;
       body: Stack(
         alignment: Alignment.center,
         children: [
-          Image.asset('assets/images/img_3.png', height: double.infinity,),
+          Image.asset('assets/images/img_3.png', height: double.infinity,fit: BoxFit.cover,width: double.infinity,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: Column (

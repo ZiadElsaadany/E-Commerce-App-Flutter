@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../utls/app_constant.dart';
+import '../../home/home.dart';
 
 class CustomButton extends StatelessWidget {
    CustomButton({Key? key,required this.word}) : super(key: key);
@@ -15,7 +16,9 @@ String word;
                 borderRadius: BorderRadius.circular(12)
             ))
         ),
-        onPressed: (){}, child: Text(
+        onPressed: (){
+          Navigator.pushReplacementNamed(context, Home.id);
+        }, child: Text(
       '$word',
       style: TextStyle(
           fontSize: 18
