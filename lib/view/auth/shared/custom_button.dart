@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../utls/app_constant.dart';
-import '../../home/home.dart';
 
 class CustomButton extends StatelessWidget {
-   CustomButton({Key? key,required this.word}) : super(key: key);
-String word;
+   const CustomButton({Key? key,required this.word,required this.txt}) : super(key: key);
+final String word;
+final String txt;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -17,9 +17,9 @@ String word;
             ))
         ),
         onPressed: (){
-          Navigator.pushReplacementNamed(context, Home.id);
+          Navigator.pushReplacementNamed(context, txt);
         }, child: Text(
-      '$word',
+    word,
       style: TextStyle(
           fontSize: 18
       ),

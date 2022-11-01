@@ -1,8 +1,10 @@
+import 'package:e_commerce_intern/animation/fade_animation.dart';
 import 'package:e_commerce_intern/view/auth/login_screen/login_screen.dart';
 import 'package:e_commerce_intern/view/auth/shared/sign_in_sign_up.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utls/app_constant.dart';
+import '../../home/home.dart';
 import '../shared/custom_button.dart';
 import '../shared/custom_textfield.dart';
 
@@ -22,30 +24,32 @@ static const String id ='register';
                 SizedBox(
                     height: MediaQuery.of(context).size.height*0.02
                 ),
-                Row(
+                FadeAnimation(1, child:   Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset('assets/images/img_2.png',width: MediaQuery.of(context).size.width*0.15,),
                   ],
-                ),
+                ),),
                 SizedBox(
                   height: MediaQuery.of(context).size.height*0.12,
                 ),
-                Text( 'Sign Up',
+                FadeAnimation(1.3, child:     Text( 'Sign Up',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 26
                   ),
-                ),
+                ),),
+
                 SizedBox(
                   height: MediaQuery.of(context).size.height*0.01,
                 ),
-                Text( 'Enter your credentials to continue',
+                FadeAnimation(1.6, child:      Text( 'Enter your credentials to continue',
                   style: TextStyle(
                       color: Colors.grey,
                       fontSize: 16
                   ),
-                ),
+                ),),
+
                 SizedBox(
                   height: MediaQuery.of(context).size.height*0.03,
                 ),
@@ -100,7 +104,7 @@ static const String id ='register';
                 ),
                 SizedBox(
                     width: double.infinity,
-                    child: CustomButton(word: 'Sign Up',)
+                    child: CustomButton(word: 'Sign Up',txt: Home.id,)
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height*0.03,
