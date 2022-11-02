@@ -1,5 +1,7 @@
 import 'package:e_commerce_intern/providers/bottomNavProvider.dart';
 import 'package:e_commerce_intern/utls/app_constant.dart';
+import 'package:e_commerce_intern/view/home/my_cart_screen/cart_widget.dart';
+import 'package:e_commerce_intern/view/home/my_cart_screen/my_cart_screen.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/shop_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +10,7 @@ import 'explore_screen/explore_screen.dart';
 
 class Home extends StatelessWidget {
  static const String id = 'home';
-List<Widget> screens  = [ShopScreen(), ExploreScreen()] ;
+List<Widget> screens  = [ShopScreen(), ExploreScreen(), MyCartScreen()] ;
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +40,20 @@ List<Widget> screens  = [ShopScreen(), ExploreScreen()] ;
           ) :null,
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
-          title:Provider.of<BottomNavProvider>(context).currentIndex==1?  Text('Find Products',
+          title:Provider.of<BottomNavProvider>(context).currentIndex==1?
+          Text('Find Products',
           style: TextStyle(
             fontSize: 20 ,
             fontWeight: FontWeight.bold
           ),
-          ):null,
+          ):Provider.of<BottomNavProvider>(context).currentIndex==2?
+          Text('My Cart',
+            style: TextStyle(
+                fontSize: 20 ,
+                fontWeight: FontWeight.bold
+            ),
+          )
+              :null,
           centerTitle: true,
           elevation: 0,
         ),

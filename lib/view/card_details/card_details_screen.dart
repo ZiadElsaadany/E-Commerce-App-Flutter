@@ -2,6 +2,7 @@ import 'package:e_commerce_intern/animation/fade_animation.dart';
 import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/auth/shared/custom_button.dart';
 import 'package:e_commerce_intern/view/home/home.dart';
+import 'package:e_commerce_intern/view/home/shared_/minus_plus_widget.dart';
 import 'package:flutter/material.dart';
 
 class CardDetails extends StatelessWidget {
@@ -58,26 +59,12 @@ static const String id = 'CardDet';
                   ),
                   Text( '1kg, Price',style: TextStyle(color: Colors.grey),),
                   SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+
                   Row(
                     children: [
-                     Image.asset('assets/images/img_14.png',width: 20,),
-                      SizedBox(width: 15,),
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.grey)
-                        ),
-                        child: Text('1',style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
-                        ),),
-                      ),
-                      SizedBox(width: 15,),
-                      Image.asset('assets/images/img_15.png',width: 20,),
+                      MinusPlusWidget(),
                       Spacer(),
                       Text('\$4.99',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)
-
                     ],
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height*0.03,),
