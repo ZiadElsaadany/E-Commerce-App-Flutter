@@ -1,6 +1,5 @@
 import 'package:e_commerce_intern/view/category_details/category_details.dart';
 import 'package:e_commerce_intern/view/home/shared_/search_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ExploreScreen extends StatelessWidget {
