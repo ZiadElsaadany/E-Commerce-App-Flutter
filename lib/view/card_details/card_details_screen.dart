@@ -84,7 +84,8 @@ static const String id = 'CardDet';
                   height: 2,
                   thickness: 1,
                 ),
-                SizedBox(height: 10 ) ,
+                SizedBox(height: 20,),
+
                 const Text('Product Details',style: TextStyle (
                     fontSize: 18,
                     fontWeight: FontWeight.bold),),
@@ -96,12 +97,14 @@ static const String id = 'CardDet';
                   height: 2,
                   thickness: 1,
                 ),
-                SizedBox(height: 10 ) ,
+              SizedBox(height: 20,),
 
                 const Text('Nutritions',style: TextStyle (
                     fontSize: 18,
                     fontWeight: FontWeight.bold),),
-                SizedBox(height: 10 ) ,
+                SizedBox(height: 20,),
+
+
 
                 Divider(
                   height: 2,
@@ -118,10 +121,10 @@ static const String id = 'CardDet';
                  ]
 
                ),
-                SizedBox(height: 10 ) ,
+                SizedBox(height: 20,),
                 SizedBox(
                     width: double.infinity,
-                    child: CustomButton(word: 'Add TO Basket', txt: Home.id))
+                    child: CustomButton(word: 'Add To Basket', txt: Home.id))
               ],
             ),
           )
