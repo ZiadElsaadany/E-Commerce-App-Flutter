@@ -38,7 +38,7 @@ static const String id = 'CardDet';
               ),
               child: Image.asset('assets/images/img_8.png'),
             ) ,),
-
+//
             SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
