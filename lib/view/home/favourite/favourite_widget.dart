@@ -16,7 +16,7 @@ class FavouriteWidget extends StatelessWidget {
           )),
           SizedBox(width: 5),
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,16 +30,11 @@ class FavouriteWidget extends StatelessWidget {
 
           ),
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('\$1.99',style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18
-                ), ) ,
-                Icon(Icons.arrow_forward_ios)
-            ]
-            ) ,
+            child: Text('\$1.955',style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18 ,
+
+            ), ) ,
           )
         ],
       ),
