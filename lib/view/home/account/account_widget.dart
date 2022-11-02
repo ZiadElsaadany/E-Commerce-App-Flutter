@@ -8,7 +8,7 @@ final String txt;
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding:  EdgeInsets.all(MediaQuery.of(context).size.height*0.025),
           child: Row(children: [
               Icon(Icons.payment),
               SizedBox(width: 15,),

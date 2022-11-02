@@ -59,7 +59,7 @@ class AccountScreen extends StatelessWidget {
           ),
           SizedBox(height: MediaQuery.of(context).size.height*0.03,),
           Divider(height: 2,thickness: 1,),
-         AccountWidget(txt: 'Orders'),
+          AccountWidget(txt: 'Orders'),
          AccountWidget(txt: 'My Details'),
          AccountWidget(txt: 'Payment Methods'),
          AccountWidget(txt: 'Promo Cord'),
