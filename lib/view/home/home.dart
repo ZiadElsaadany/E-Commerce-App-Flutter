@@ -1,6 +1,6 @@
 import 'package:e_commerce_intern/providers/bottomNavProvider.dart';
 import 'package:e_commerce_intern/utls/app_constant.dart';
-import 'package:e_commerce_intern/view/home/my_cart_screen/cart_widget.dart';
+import 'package:e_commerce_intern/view/home/favourite/favourtie_screen.dart';
 import 'package:e_commerce_intern/view/home/my_cart_screen/my_cart_screen.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/shop_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ import 'explore_screen/explore_screen.dart';
 
 class Home extends StatelessWidget {
  static const String id = 'home';
-List<Widget> screens  = [ShopScreen(), ExploreScreen(), MyCartScreen()] ;
+List<Widget> screens  = [ShopScreen(), ExploreScreen(), MyCartScreen(),FavouriteScreen()] ;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,12 @@ List<Widget> screens  = [ShopScreen(), ExploreScreen(), MyCartScreen()] ;
                 fontWeight: FontWeight.bold
             ),
           )
-              :null,
+              :Provider.of<BottomNavProvider>(context).currentIndex==3?  Text('My Favourite',
+            style: TextStyle(
+                fontSize: 20 ,
+                fontWeight: FontWeight.bold
+            ),
+          ) :null ,
           centerTitle: true,
           elevation: 0,
         ),
