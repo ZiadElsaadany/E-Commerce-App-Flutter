@@ -40,8 +40,8 @@ class ExploreScreen extends StatelessWidget {
                             height: 20,
                           ),
                           Text( 'Frash Fruits & Vegetable',style: TextStyle(
-                            fontWeight: FontWeight.bold
-                          ),)
+                            fontWeight: FontWeight.bold,
+                          ),textAlign: TextAlign.center,)
                         ],
                       ),
                     ),
