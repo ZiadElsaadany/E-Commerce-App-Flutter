@@ -6,17 +6,20 @@ import 'package:e_commerce_intern/view/home/shop_screen/shop_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'account/account_screen.dart';
 import 'explore_screen/explore_screen.dart';
 
 class Home extends StatelessWidget {
  static const String id = 'home';
-List<Widget> screens  = [ShopScreen(), ExploreScreen(), MyCartScreen(),FavouriteScreen()] ;
+List<Widget> screens  = [ShopScreen(), ExploreScreen(), MyCartScreen(),FavouriteScreen(),AccountScreen()] ;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        appBar:Provider.of<BottomNavProvider>(context).currentIndex==4?
+        null :
+        AppBar(
           toolbarHeight: Provider.of<BottomNavProvider>(context).currentIndex==0?
           MediaQuery.of(context).size.height*0.11 : null,
           flexibleSpace:Provider.of<BottomNavProvider>(context).currentIndex==0?
