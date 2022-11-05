@@ -7,20 +7,9 @@ class TitleWidgetForCards extends StatelessWidget {
 final String txt ;
   @override
   Widget build(BuildContext context) {
-    return           Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text (txt,style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18
-        ),) ,
-        Text ( 'See all',style: TextStyle(
-            color: ConstantApp.greenColor,
-            fontWeight: FontWeight.bold,
-            fontSize: 15
-
-        ), ) ,
-      ],
-    ) ;
+    return           Text (txt,style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 18
+    ),) ;
   }
 }

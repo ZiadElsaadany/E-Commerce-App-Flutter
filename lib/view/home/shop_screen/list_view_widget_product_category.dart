@@ -1,17 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce_intern/providers/home_provider.dart';
-import 'package:e_commerce_intern/providers/product_details_provider.dart';
 import 'package:e_commerce_intern/view/card_details/card_details_screen.dart';
-import 'package:e_commerce_intern/view/home/home.dart';
+import 'package:e_commerce_intern/view/home/shop_screen/card_widget_category.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/product_model/Products.dart';
-import '../../card_details/card_widget.dart';
+import '../../../providers/product_details_provider.dart';
 
-class ListViewScrollable extends StatelessWidget {
-  const ListViewScrollable({Key? key,required this.product,  }) : super(key: key);
-  final List<Products>  product ;
+
+
+class ListViewWidgetProductCategory extends StatelessWidget {
+  const ListViewWidgetProductCategory({Key? key,}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +31,21 @@ class ListViewScrollable extends StatelessWidget {
         enlargeCenterPage: true,
         scrollDirection: Axis.horizontal,
       ),
-      items:  product.map((i) {
+      items:  Provider.of<HomeProvider>(context).productsFromCategory.map((i) {
         return Builder(
           builder: (BuildContext context) {
             return InkWell(
-              onTap: ( ) { 
-                Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: i.id);
-                Navigator.push(context, MaterialPageRoute(builder: (ctx)
-                {
-                  return CardDetails();
+              onTap: ( ) {
+                Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: i['id']);
+                Navigator.push(context, MaterialPageRoute(builder: (ctx) {
+                  return CardDetails() ;
                 } ));
               },
-              child: CardWidget(
-                product: i,
+              child: CardWidgetCategory(
+                img: i['image'],
+                name: i['name'],
+                price: i['price'],
+
               ),
             );
           },

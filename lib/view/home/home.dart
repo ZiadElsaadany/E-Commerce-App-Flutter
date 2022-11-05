@@ -5,14 +5,28 @@ import 'package:e_commerce_intern/view/home/my_cart_screen/my_cart_screen.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/shop_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../../providers/home_provider.dart';
 import 'account/account_screen.dart';
 import 'explore_screen/explore_screen.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
  static const String id = 'home';
-List<Widget> screens  = [ShopScreen(), ExploreScreen(), MyCartScreen(),FavouriteScreen(),AccountScreen()] ;
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+List<Widget> screens  = [ShopScreen(), ExploreScreen(), MyCartScreen(),FavouriteScreen(),AccountScreen()] ;
+@override
+void initState() {
+  Future.delayed(Duration.zero ,() async {
+    Provider.of<HomeProvider>(context,listen: false).getHomeProduct() ;
+    Provider.of<HomeProvider>(context,listen: false).getCategories() ;
+  } );
+  super.initState();
+
+}
   @override
   Widget build(BuildContext context) {
     return SafeArea(

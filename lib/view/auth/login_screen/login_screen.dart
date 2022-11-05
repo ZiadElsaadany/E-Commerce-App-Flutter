@@ -101,11 +101,11 @@ class LoginScreen extends StatelessWidget {
                   ),
                   FadeAnimation(1.2, child:   SizedBox(
                       width: double.infinity,
-                      child: CustomButton(word: 'Log In',fun: ( )   {
+                      child: CustomButton(word: 'Log In',fun: ( ) async  {
 
                         if(formKey.currentState!.validate()) {
-                             Provider.of<AuthProvider>(context,listen: false).login(email: email, pass: pass);
-                             if(     Provider.of<AuthProvider>(context).statusLogin) {
+                       await      Provider.of<AuthProvider>(context,listen: false).login(email: email, pass: pass);
+                             if(     Provider.of<AuthProvider>(context,listen: false).statusLogin) {
                                Navigator.pushReplacementNamed(context, Home.id);
                              }
                         }

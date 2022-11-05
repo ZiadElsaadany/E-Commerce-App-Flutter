@@ -4,13 +4,18 @@ import 'package:e_commerce_intern/view/card_details/card_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/product_model/Products.dart';
 
-class CardWidget extends StatelessWidget {
-  const CardWidget({Key? key,required this.product
+class CardWidgetCategory extends StatelessWidget {
+  const CardWidgetCategory({Key? key,
+    required this.img,
+    required this.name ,
+    required this.price,
+
   }) : super(key: key);
 
-final Products product;
+  final String name;
+  final String img;
+  final num? price ;
 
 
   @override
@@ -18,17 +23,16 @@ final Products product;
     return Card(
       elevation: 4,
       shape: BeveledRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-        side: BorderSide(
-          color: Colors.black,
-          width: 0.1
-        )
+          borderRadius: BorderRadius.circular(8.0),
+          side: BorderSide(
+              color: Colors.black,
+              width: 0.1
+          )
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Expanded(
               flex:7,
@@ -38,8 +42,8 @@ final Products product;
                   imageErrorBuilder: (m,c,v){
                     return  Image.asset('assets/images/loadingPicture.jpg');
                   },
-                  image:  product.image??'' ,
-                placeholder: 'assets/images/loadingPicture.jpg',
+                  image:  img ,
+                  placeholder: 'assets/images/loadingPicture.jpg',
                 ),
               ),
             ),
@@ -47,11 +51,11 @@ final Products product;
               flex: 2,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text(product.name??'',style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold
+                child: Text(name,style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold
                 ),
-                maxLines: 1,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   textDirection: TextDirection.rtl,
                 ),
@@ -63,9 +67,9 @@ final Products product;
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text('\$${product.price}',style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16
+                  Text('\$$price',style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16
                   ),),
                   Image.asset('assets/images/img_10.png',width: MediaQuery.of(context).size.width*0.08,)
 
