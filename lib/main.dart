@@ -1,3 +1,4 @@
+import 'package:e_commerce_intern/providers/authProvider.dart';
 import 'package:e_commerce_intern/providers/bottomNavProvider.dart';
 import 'package:e_commerce_intern/view/auth/login_screen/login_screen.dart';
 import 'package:e_commerce_intern/view/auth/register_screen/register_screen.dart';
@@ -15,7 +16,8 @@ void main (   ) {
       providers: [
         ChangeNotifierProvider(create: (ctx){
           return BottomNavProvider() ;
-        })
+        }),
+        ChangeNotifierProvider(create: (ctx)=>AuthProvider())
       ],
       child: Ecommerce()));
 }

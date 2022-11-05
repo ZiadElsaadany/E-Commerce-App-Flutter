@@ -1,10 +1,12 @@
 
 import 'package:e_commerce_intern/animation/fade_animation.dart';
+import 'package:e_commerce_intern/providers/authProvider.dart';
 import 'package:e_commerce_intern/view/auth/register_screen/register_screen.dart';
 import 'package:e_commerce_intern/view/auth/shared/custom_button.dart';
 import 'package:e_commerce_intern/view/auth/shared/custom_textfield.dart';
 import 'package:e_commerce_intern/view/auth/shared/sign_in_sign_up.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../home/home.dart';
 
@@ -12,6 +14,8 @@ import '../../home/home.dart';
 class LoginScreen extends StatelessWidget {
   static const String id = 'login' ;
   final GlobalKey<FormState> formKey  = GlobalKey<FormState>();
+  String pass  = '';
+  String email  = '';
 
   LoginScreen({Key? key}) : super(key: key);
   @override
@@ -58,6 +62,9 @@ class LoginScreen extends StatelessWidget {
                     height: MediaQuery.of(context).size.height*0.03,
                   ),
                   FadeAnimation(1.2, child: CustomTextField(
+                    onChanged: (value) {
+                      email = value;
+                    },
                     errorText: 'Please enter your email ',
                     hintText:'Enter your email' ,
                     labelText: 'Email',
@@ -67,6 +74,9 @@ class LoginScreen extends StatelessWidget {
                     height: MediaQuery.of(context).size.height*0.03,
                   ),
                   FadeAnimation(1.2, child:   CustomTextField(
+                      onChanged: (value) {
+                        pass = value;
+                      },
                     errorText: 'Please enter your password ',
                       labelText: 'Password',
                       hintText:'Enter your password' ,
@@ -91,8 +101,9 @@ class LoginScreen extends StatelessWidget {
                   FadeAnimation(1.2, child:   SizedBox(
                       width: double.infinity,
                       child: CustomButton(word: 'Log In',fun: ( )  {
-                        if(formKey.currentState!.validate() ) {
-                          Navigator.pushNamed(context, Home.id);
+                        Provider.of<AuthProvider>(context,listen: false).login(email: email, pass: pass);
+                        if(formKey.currentState!.validate()&&context.read<AuthProvider>().statusLogin==true ) {
+                          Navigator.pushReplacementNamed(context, Home.id);
                         }
                       },)
                   ),),
