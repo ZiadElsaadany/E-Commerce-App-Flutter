@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../utls/app_constant.dart';
 
 class CustomButton extends StatelessWidget {
-   const CustomButton({Key? key,required this.word,required this.txt}) : super(key: key);
+   const CustomButton({Key? key,required this.word,required this.fun}) : super(key: key);
 final String word;
-final String txt;
+
+final VoidCallback fun ;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -16,9 +17,7 @@ final String txt;
                 borderRadius: BorderRadius.circular(12)
             ))
         ),
-        onPressed: (){
-          Navigator.pushReplacementNamed(context, txt);
-        }, child: Text(
+        onPressed:fun, child: Text(
     word,
       style: TextStyle(
           fontSize: 18

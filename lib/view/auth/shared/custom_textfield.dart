@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
-   CustomTextField({Key? key,this.labelText,this.hintText,this.suffixIcon=false}) : super(key: key);
-String ?labelText;
-String ?hintText;
-bool    suffixIcon ;
-bool check =false ;
+   CustomTextField({Key? key,this.labelText,this.hintText,this.suffixIcon=false,required this.errorText}) : super(key: key);
+final String ?labelText;
+final String ?hintText;
+final bool    suffixIcon ;
+ bool check =false ;
+final String errorText ;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -15,7 +16,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return    TextFormField(
-      obscureText:widget.check,
+      validator: (value  )  {
+         if( value ==null || value.isEmpty ) {
+           return  widget.errorText ;
+         }else {
+           return null;
+         }
+      },
+      obscureText:!widget.check,
       decoration: InputDecoration(
           labelText: widget.labelText,
           hintText: widget.hintText,
@@ -25,7 +33,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             setState(() {});
           },
           child: Icon(
-         widget.check?    Icons.visibility_off_outlined:Icons.visibility
+         widget.check?    Icons.visibility:Icons.visibility_off_outlined
           ),
         )  :null
       ),

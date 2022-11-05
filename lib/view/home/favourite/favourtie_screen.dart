@@ -32,7 +32,7 @@ class FavouriteScreen extends StatelessWidget {
           ),
           SizedBox(
               width: double.infinity,
-              child: CustomButton(word: 'Add All To Cart', txt: '')),
+              child: CustomButton(word: 'Add All To Cart', fun: (){},)),
           SizedBox(height: MediaQuery.of(context).size.height*0.02,),
 
         ],

@@ -32,7 +32,7 @@ class MyCartScreen extends StatelessWidget {
              width: double.infinity,
              child: Padding(
                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-               child: CustomButton(word: 'Go to Checkout', txt: ''),
+               child: CustomButton(word: 'Go to Checkout',fun:  ( )  { },),
              )),
         SizedBox(height: MediaQuery.of(context).size.height*0.025,),
       ],

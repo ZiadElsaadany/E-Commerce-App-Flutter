@@ -116,7 +116,7 @@ static const String id = 'CardDet';
                   SizedBox(height: MediaQuery.of(context).size.height*0.03,),
                   SizedBox(
                       width: double.infinity,
-                      child: CustomButton(word: 'Add To Basket', txt: Home.id)),
+                      child: CustomButton(word: 'Add To Basket',fun: (){},) ) ,
                   SizedBox(height: MediaQuery.of(context).size.height*0.03,),
 
                 ],
