@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../../../providers/authProvider.dart';
 import '../../../utls/app_constant.dart';
-import '../../home/home.dart';
 import '../shared/custom_button.dart';
 import '../shared/custom_textfield.dart';
 
@@ -137,12 +136,14 @@ String pass ='';
                   SizedBox(
                       width: double.infinity,
                       child: CustomButton(word: 'Sign Up',fun: ( ) {
+
+                      if (formKey.currentState!.validate() ) {
                         Provider.of<AuthProvider>(context,listen: false).register(
                             name:name , phoneNumber: phoneNumber, email: email, pass: pass ) ;
-
-                        if (formKey.currentState!.validate() &&context.read<AuthProvider>().statusRegister==true ) {
-                          Navigator.pushReplacementNamed(context, Home.id);
+                        if(Provider.of<AuthProvider>(context).statusRegister )  {
+                          Navigator.pushNamed(context, LoginScreen.id);
                         }
+                      }
                       }
     ,)
                   ),

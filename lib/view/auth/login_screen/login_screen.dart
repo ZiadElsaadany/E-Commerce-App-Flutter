@@ -8,6 +8,7 @@ import 'package:e_commerce_intern/view/auth/shared/sign_in_sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utls/app_constant.dart';
 import '../../home/home.dart';
 
 
@@ -100,10 +101,13 @@ class LoginScreen extends StatelessWidget {
                   ),
                   FadeAnimation(1.2, child:   SizedBox(
                       width: double.infinity,
-                      child: CustomButton(word: 'Log In',fun: ( )  {
-                        Provider.of<AuthProvider>(context,listen: false).login(email: email, pass: pass);
-                        if(formKey.currentState!.validate()&&context.read<AuthProvider>().statusLogin==true ) {
-                          Navigator.pushReplacementNamed(context, Home.id);
+                      child: CustomButton(word: 'Log In',fun: ( )   {
+
+                        if(formKey.currentState!.validate()) {
+                             Provider.of<AuthProvider>(context,listen: false).login(email: email, pass: pass);
+                             if(     Provider.of<AuthProvider>(context).statusLogin) {
+                               Navigator.pushReplacementNamed(context, Home.id);
+                             }
                         }
                       },)
                   ),),
