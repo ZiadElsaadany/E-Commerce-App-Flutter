@@ -48,10 +48,10 @@ final Products product;
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(product.name??'',style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.black.withOpacity(0.5),
                   fontWeight: FontWeight.bold
                 ),
-                maxLines: 1,
+                maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textDirection: TextDirection.rtl,
                 ),
@@ -65,6 +65,7 @@ final Products product;
                 children: [
                   Text('\$${product.price}',style: TextStyle(
                     fontWeight: FontWeight.bold,
+                      color: Colors.black.withOpacity(0.6),
                     fontSize: 16
                   ),),
                   Image.asset('assets/images/img_10.png',width: MediaQuery.of(context).size.width*0.08,)

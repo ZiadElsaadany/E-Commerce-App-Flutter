@@ -22,7 +22,7 @@ final List<Color> colors  =[ Color(0xffF7A593), Color(0xffF8A44C), Color(0xff53B
                 crossAxisCount: 2,
                   childAspectRatio: 0.7
               ) ,
-                  itemBuilder: (ctx,index)=> InkWell(
+                  itemBuilder: (ctx,index)=> GestureDetector(
                     onTap: ( )  {
                       Navigator.pushNamed(context,CategoryDetails.id ,arguments:
                       CategoryDetailsModel(id:    context.read<HomeProvider>().categoryTypes[index]['id'], name:

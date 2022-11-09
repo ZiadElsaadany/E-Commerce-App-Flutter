@@ -128,8 +128,10 @@ bool _customTileExpanded = false;
                                   child: Text( provider.data['name'],
                                      maxLines: 1,
                                      overflow: TextOverflow.ellipsis,
+
                                      textDirection: TextDirection.rtl,
                                      style: TextStyle(
+                                       color: Colors.black.withOpacity(0.5),
                                       fontSize: 18,
                                       fontWeight: FontWeight.w900),),
                                 ),
@@ -146,21 +148,24 @@ bool _customTileExpanded = false;
                                 Spacer(),
                                 Column(
                                   children: [
-                                    Text('Old Price: \$${provider.data['old_price']}',
+                                    Text('old Price: \$${provider.data['old_price']}',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold, fontSize: 15,
-                                        color: Colors.grey)
+                                        color: Colors.grey
+                                        )
                                     ),
-                                    Text('Discount: \$${provider.data['discount']}',
+                                    Text('discount: \$${provider.data['discount']}',
                                         style: TextStyle(
-                                          color: Colors.black,
-                                            fontWeight: FontWeight.w500, fontSize: 20)),
+                                          color: Colors.black.withOpacity(0.6),
+                                            fontWeight: FontWeight.w500, fontSize: 18)),
 
                                   ],
                                 ),
                                 SizedBox(width: 15,),
                                 Text('\$${provider.data['price']}', style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),)
+                                    fontWeight: FontWeight.bold, fontSize: 20 ,
+                                color: Colors.black.withOpacity(0.7)
+                                ),)
                               ],
                             ),
                             SizedBox(height: MediaQuery
@@ -176,14 +181,16 @@ bool _customTileExpanded = false;
                                   fontWeight: FontWeight.bold,
                                   color:  _customTileExpanded
                                       ? ConstantApp.greenColor
-                                      :Colors.black,
+                                      :Colors.black.withOpacity(0.6),
                                 ),),
                                 trailing: Icon(
                                   _customTileExpanded
                                       ? Icons.arrow_circle_up
                                       :  Icons.arrow_circle_down,
                                 ),
-                                collapsedIconColor: ConstantApp.greenColor,
+                                collapsedIconColor:  _customTileExpanded
+            ?Colors.green
+                : Colors.black.withOpacity(0.5),
                                 children: <Widget>[
                                   ListTile(
 
@@ -209,9 +216,11 @@ bool _customTileExpanded = false;
                                 mainAxisAlignment: MainAxisAlignment
                                     .spaceBetween,
                                 children: [
-                                  const Text('Review', style: TextStyle(
+                                   Text('Review', style: TextStyle(
                                       fontSize: 18,
-                                      fontWeight: FontWeight.bold),),
+                                      fontWeight: FontWeight.bold,
+                                     color: Colors.black.withOpacity(0.7)
+                                  ),),
                                   Icon(
                                     Icons.star, color: ConstantApp.greenColor,)
                                 ]

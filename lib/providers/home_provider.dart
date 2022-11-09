@@ -17,6 +17,16 @@ class HomeProvider extends ChangeNotifier{
   List<dynamic> banners =[] ;
  bool loading = false;
  bool loadingCategoryType = false;
+
+
+
+ String ?  name  ;
+ getNameCategory({required String name }){
+   this.name =name;
+   notifyListeners();
+ }
+
+
   getHomeProduct (  ) async{
     loading =true;
     notifyListeners();
@@ -91,8 +101,14 @@ notifyListeners() ;
     }
   }
 
+
+  bool loadingFromCategory = false;
   getProductsFromCategories({required int id }) async {
+    productsFromCategory = [] ;
+    loadingFromCategory = true ;
     try {
+      loadingFromCategory = true ;
+      notifyListeners();
       print ('tmmmmmmmmmmmmmmmmmmmmmmmmmmmm');
       http.Response res = await http.get(
           Uri.parse('https://student.valuxapps.com/api/products?category_id=$id') ,
@@ -105,20 +121,23 @@ notifyListeners() ;
       print ('finish try');
       if(res.statusCode ==200 ){
         print ('reessssssssssssssss true     fkkdfkd');
-
+      loadingFromCategory =false;
         notifyListeners();
         print( '$productsFromCategory hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
         notifyListeners();
       }else {
+        loadingFromCategory =false;
         ConstantApp().toast(msg: json.decode(res.body)['message'], color: Colors.red);
         notifyListeners();
       }
     } on SocketException  {
+      loadingFromCategory =false;
       ConstantApp().toast(msg: 'لا يوجد انترنت', color: Colors.red);
       notifyListeners() ;
     }
 
     catch(E){
+      loadingFromCategory =false;
       ConstantApp().toast(msg: 'error', color: Colors.red);
       print (E);
       notifyListeners();

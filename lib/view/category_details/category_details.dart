@@ -74,7 +74,7 @@ static const String id= 'CategoriesDet';
                 ),
 
 
-                itemBuilder: (ctx,index)=>InkWell(
+                itemBuilder: (ctx,index)=>GestureDetector(
                   onTap: ( ) {
                     Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: context.read<HomeProvider>().productsFromCategory[index]['id']);
                     Navigator.push(context, MaterialPageRoute(builder: (ctx) {

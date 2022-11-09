@@ -12,7 +12,7 @@ final VoidCallback fun ;
     return ElevatedButton(
         style: ButtonStyle(
             padding: MaterialStateProperty.all(EdgeInsets.all(20)),
-            backgroundColor: MaterialStateProperty.all(ConstantApp.greenColor),
+            backgroundColor: MaterialStateProperty.all(ConstantApp.greenColor.withOpacity(0.8)),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12)
             ))
