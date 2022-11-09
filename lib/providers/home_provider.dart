@@ -61,7 +61,6 @@ notifyListeners() ;
     }
   }
   getCategories (  )async {
-    loadingCategoryType =true;
     notifyListeners();
     try {
       print ('tmmmmmmmmmmmmmmmmmmmmmmmmmmmm');
@@ -76,22 +75,17 @@ notifyListeners() ;
 
         notifyListeners();
         print( '$homeProductList hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
-
-        loadingCategoryType =false;
         notifyListeners();
       }else {
-        loadingCategoryType =false;
         ConstantApp().toast(msg: json.decode(res.body)['message'], color: Colors.red);
         notifyListeners();
       }
     } on SocketException  {
-      loadingCategoryType =false;
       ConstantApp().toast(msg: 'لا يوجد انترنت', color: Colors.red);
       notifyListeners() ;
     }
 
     catch(E){
-      loadingCategoryType =false;
       ConstantApp().toast(msg: 'error', color: Colors.red);
       print (E);
       notifyListeners();

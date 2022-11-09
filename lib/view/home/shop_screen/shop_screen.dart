@@ -1,4 +1,5 @@
 import 'package:e_commerce_intern/providers/home_provider.dart';
+import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/home/shared_/search_widget.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/listViewScrollable_widget.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/list_view_widget_product_category.dart';
@@ -16,7 +17,9 @@ class ShopScreen extends StatelessWidget {
     return Consumer<HomeProvider>(
       builder: (context,provider,_) {
         return  Provider.of<HomeProvider>(context).loading?
-       Center(child: CircularProgressIndicator()): Padding(
+       Center(child: CircularProgressIndicator(
+         color: ConstantApp.greenColor,
+       )): Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: ListView(
             physics: const BouncingScrollPhysics(),

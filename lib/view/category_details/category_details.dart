@@ -1,43 +1,96 @@
+import 'dart:ffi';
+
 import 'package:e_commerce_intern/models/product_model/Product_model.dart';
 import 'package:e_commerce_intern/providers/home_provider.dart';
+import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/card_details/card_widget.dart';
+import 'package:e_commerce_intern/view/home/explore_screen/explore_screen.dart';
 import 'package:e_commerce_intern/view/home/home.dart';
+import 'package:e_commerce_intern/view/home/shop_screen/card_widget_category.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/product_details_provider.dart';
+import '../card_details/card_details_screen.dart';
+
 class CategoryDetails extends StatelessWidget {
-  const CategoryDetails({Key? key}) : super(key: key);
-static const String id = 'CategoryDet';
+static const String id= 'CategoriesDet';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title:Text (  'Beverages'  ) ,
-        centerTitle: true,
-        actions: [
-IconButton(onPressed: ( )  { }, icon: Icon(Icons.person))
-        ],
-        elevation: 0,
-        foregroundColor: Colors.black,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: GridView.builder(
-          physics: BouncingScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10
+   CategoryDetailsModel args = ModalRoute.of(context)!.settings.arguments as CategoryDetailsModel;
+    return FutureBuilder (
+      future: context.read<HomeProvider>().getProductsFromCategories(id: args.id),
+      builder: ( ctx ,snapshot) {
+        if(snapshot.connectionState == ConnectionState.waiting) {
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              foregroundColor: Colors.black,
             ),
+            body:  Center(
+              child: CircularProgressIndicator(
+                    color: ConstantApp.greenColor,
+                  ),
+            )
+          );
+        }
+        if(snapshot.connectionState == ConnectionState.none) {
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              foregroundColor: Colors.black,
+            ),
+            body:  Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/images/no_internet.jpg'),
+              ],
+            )
+          );
+        }
+        return Scaffold(
+            appBar: AppBar(
+              backgroundColor: ConstantApp.greenColor,
+              title:Text ( args.name) ,
+              centerTitle: true,
+              actions: [
+                IconButton(onPressed: ( )  {
+                  Navigator.pushNamed(context,Home.id);
+                }, icon: Icon(Icons.explore))
+              ],
+            ),
+            body: Padding(
+              padding:  EdgeInsets.all(20),
+              child: GridView.builder(
+                physics: BouncingScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10
+                ),
 
 
-            itemBuilder: (ctx,index)=>CardWidget(
-                product: Provider.of<HomeProvider>(context).homeProductList[index]
-            )  ,
-        itemCount: Provider.of<HomeProvider>(context).homeProductList.length,
-        ),
-      )
+                itemBuilder: (ctx,index)=>InkWell(
+                  onTap: ( ) {
+                    Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: context.read<HomeProvider>().productsFromCategory[index]['id']);
+                    Navigator.push(context, MaterialPageRoute(builder: (ctx) {
+                      return CardDetails() ;
+                    } ));
+                  },
+                  child: CardWidgetCategory(
+                    img: context.read<HomeProvider>().productsFromCategory[index]['image'],
+                    name: context.read<HomeProvider>().productsFromCategory[index]['name'],
+                    price: context.read<HomeProvider>().productsFromCategory[index]['price'],
+                  ),
+                )  ,
+                itemCount: Provider.of<HomeProvider>(context).productsFromCategory.length,
+              ),
+            )
+        );
+      },
     );
   }
 }

@@ -23,10 +23,10 @@ class CardWidgetCategory extends StatelessWidget {
     return Card(
       elevation: 4,
       shape: BeveledRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(15.0),
           side: BorderSide(
               color: Colors.black,
-              width: 0.1
+              width: 0.2,
           )
       ),
       child: Padding(

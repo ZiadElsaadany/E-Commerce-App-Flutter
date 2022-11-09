@@ -1,6 +1,8 @@
+import 'package:e_commerce_intern/providers/home_provider.dart';
 import 'package:e_commerce_intern/view/category_details/category_details.dart';
 import 'package:e_commerce_intern/view/home/shared_/search_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({Key? key}) : super(key: key);
@@ -9,7 +11,7 @@ class ExploreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 25.0),
         child: Column(
           children: [
         SearchWidget(),
@@ -21,7 +23,12 @@ class ExploreScreen extends StatelessWidget {
               ) ,
                   itemBuilder: (ctx,index)=> InkWell(
                     onTap: ( )  {
-                      Navigator.pushNamed(context, CategoryDetails.id);
+                      Navigator.pushNamed(context, CategoryDetails.id ,arguments:
+                          CategoryDetailsModel(id:    context.read<HomeProvider>().categoryTypes[index]['id'], name:
+                          context.read<HomeProvider>().categoryTypes[index]['name']
+                          )
+
+                      ) ;
                     },
                     child: Container(
                       alignment: Alignment.center,
@@ -34,18 +41,26 @@ class ExploreScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset('assets/images/img_7.png',width: MediaQuery.of(context).size.width*0.3,),
-                          SizedBox(
-                            height: 20,
+                          FadeInImage.assetNetwork(placeholder: 'assets/images/loadingPicture.jpg',
+
+                      image: context.read<HomeProvider>().categoryTypes[index]['image'],width: MediaQuery.of(context).size.width*0.3,
+
+                          imageErrorBuilder: (x,b,v )  {
+                            return Image.asset('assets/images/loadingPicture.jpg');
+                          },
                           ),
-                          Text( 'Frash Fruits & Vegetable',style: TextStyle(
+
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text( context.read<HomeProvider>().categoryTypes[index]['name'],style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),textAlign: TextAlign.center,)
                         ],
                       ),
                     ),
                   ),
-                itemCount: 10,
+                itemCount:context.read<HomeProvider>().categoryTypes.length,
 
 
               ),
@@ -55,4 +70,14 @@ class ExploreScreen extends StatelessWidget {
       ),
     );
   }
+}
+class CategoryDetailsModel {
+  int id;
+  String name  ;
+  CategoryDetailsModel(
+  {
+    required this.id ,
+    required this.name
+}
+      ) ;
 }
