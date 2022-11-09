@@ -69,6 +69,7 @@ static const String id= 'CategoriesDet';
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
+                    childAspectRatio: 0.7,
                     mainAxisSpacing: 10
                 ),
 

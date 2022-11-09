@@ -6,22 +6,18 @@ import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/product_model/Banners.dart';
+
 class HomeProvider extends ChangeNotifier{
   ProductModel ?  productModelAll ;
 
  List<Products>  homeProductList=[];
-List categoryTypes= [] ;
-
-
-
-
-List productsFromCategory= [] ;
-
-
-
-  bool loading = false;
+ List categoryTypes= [] ;
+ List productsFromCategory= [] ;
+  List<dynamic> banners =[] ;
+ bool loading = false;
  bool loadingCategoryType = false;
-  getHomeProduct (  )async {
+  getHomeProduct (  ) async{
     loading =true;
     notifyListeners();
     try {
@@ -37,6 +33,9 @@ List productsFromCategory= [] ;
         print ('reessssssssssssssss true     fkkdfkd');
       productModelAll= ProductModel.fromJson(json.decode(res.body)) ;
       homeProductList.addAll(productModelAll!.data!.products??[]);
+      banners.addAll(productModelAll!.data!.banners??[]);
+     print ( """""""""""""""""""fgjpgignp""""""""""""""""""" ) ;
+
    notifyListeners();
    print( '$homeProductList hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
 

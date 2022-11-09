@@ -47,7 +47,7 @@ void initState() {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.not_listed_location_sharp),
-                  Text('Dhaka, Banassre',textAlign: TextAlign.center,style: TextStyle(
+                  Text('Tanta, Sebrbay',textAlign: TextAlign.center,style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold
                   ),),

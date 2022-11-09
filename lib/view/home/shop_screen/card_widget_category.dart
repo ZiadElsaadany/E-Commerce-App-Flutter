@@ -26,7 +26,7 @@ class CardWidgetCategory extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
           side: BorderSide(
               color: Colors.black,
-              width: 0.2,
+              width: 0.1,
           )
       ),
       child: Padding(

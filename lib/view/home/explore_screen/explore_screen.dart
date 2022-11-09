@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ExploreScreen extends StatelessWidget {
-  const ExploreScreen({Key? key}) : super(key: key);
-
+   ExploreScreen({Key? key}) : super(key: key);
+final List<Color> colors  =[ Color(0xffF7A593), Color(0xffF8A44C), Color(0xff53B175), Color(0xffD3B0E0),Color(0xffB7DFF5)];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,12 +19,13 @@ class ExploreScreen extends StatelessWidget {
               child: GridView.builder(
                  physics: BouncingScrollPhysics(),
                 gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2
+                crossAxisCount: 2,
+                  childAspectRatio: 0.7
               ) ,
                   itemBuilder: (ctx,index)=> InkWell(
                     onTap: ( )  {
-                      Navigator.pushNamed(context, CategoryDetails.id ,arguments:
-                          CategoryDetailsModel(id:    context.read<HomeProvider>().categoryTypes[index]['id'], name:
+                      Navigator.pushNamed(context,CategoryDetails.id ,arguments:
+                      CategoryDetailsModel(id:    context.read<HomeProvider>().categoryTypes[index]['id'], name:
                           context.read<HomeProvider>().categoryTypes[index]['name']
                           )
 
@@ -36,27 +37,30 @@ class ExploreScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                          border: Border.all(color:Color(0xffF7A593)),
-                        color: Color(0xffF7A593).withOpacity(0.25)
+                        color:colors[index].withOpacity(0.15)
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FadeInImage.assetNetwork(placeholder: 'assets/images/loadingPicture.jpg',
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height*0.5,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FadeInImage.assetNetwork(placeholder: 'assets/images/loadingPicture.jpg',
 
-                      image: context.read<HomeProvider>().categoryTypes[index]['image'],width: MediaQuery.of(context).size.width*0.3,
+                        image: context.read<HomeProvider>().categoryTypes[index]['image'],width: MediaQuery.of(context).size.width*0.3,
 
-                          imageErrorBuilder: (x,b,v )  {
-                            return Image.asset('assets/images/loadingPicture.jpg');
-                          },
-                          ),
+                            imageErrorBuilder: (x,b,v )  {
+                              return Image.asset('assets/images/loadingPicture.jpg');
+                            },
+                            ),
 
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text( context.read<HomeProvider>().categoryTypes[index]['name'],style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),textAlign: TextAlign.center,)
-                        ],
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text( context.read<HomeProvider>().categoryTypes[index]['name'],style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),textAlign: TextAlign.center,)
+                          ],
+                        ),
                       ),
                     ),
                   ),

@@ -14,6 +14,8 @@ bool statusRegister = false ;
 
 register( {required String name, required String phoneNumber ,required String email ,required String pass, String? img  }) async{
   try {
+    statusRegister = true ;
+    notifyListeners();
     http.Response response=await http.post(Uri.parse('https://student.valuxapps.com/api/register'),
     body:    {
 
@@ -27,7 +29,7 @@ register( {required String name, required String phoneNumber ,required String em
     );
     if(response.statusCode == 200  )  {
       if(json.decode(response.body)['status'] == true) {
-        statusRegister = true;
+        statusRegister = false;
         token=json.decode(response.body)['data']['token'];
         notifyListeners();
         ConstantApp().toast(msg: json.decode(response.body)['message'],color: Colors.green);
@@ -37,25 +39,29 @@ register( {required String name, required String phoneNumber ,required String em
       print (json.decode(response.body)['message']) ;
       notifyListeners();
     }else{
+      statusRegister = false ;
       ConstantApp().toast(msg: json.decode(response.body)['message'],color: Colors.red);
-
       print ('error') ;
       notifyListeners();
     }
   } on SocketException {
-    ConstantApp().toast(msg:'غير متصل بالانترنت',color: Colors.red);
+    statusRegister = false ;
 
+    ConstantApp().toast(msg:'غير متصل بالانترنت',color: Colors.red);
     notifyListeners();
   } catch (e)  {
+    statusRegister = false ;
     ConstantApp().toast(msg:'حدث خطأ ما برجاء اعادة المجاولة',color: Colors.red);
 
     print (e.toString() ) ;
     notifyListeners();
   }
 }
-login ( {required String email , required String pass}  ) async{
+Future<bool>  login ( {required String email , required String pass}  ) async{
 
   try{
+    statusLogin = true;
+    notifyListeners();
     http.Response res= await http.post(Uri.parse('https://student.valuxapps.com/api/login'),
         body:  {
       'email': email ,
@@ -64,28 +70,38 @@ login ( {required String email , required String pass}  ) async{
     if(res.statusCode == 200 ) {
       print (json.decode(res.body)['message']);
       if(json.decode(res.body)['status'] == true) {
-        statusLogin =true;
+        statusLogin =false;
+        notifyListeners();
         ConstantApp().toast(msg: json.decode(res.body)['message'],color: Colors.green,);
         print (json.decode(res.body) ) ;
+        return true;
       }else {
+        statusLogin =false;
+        notifyListeners();
         ConstantApp().toast(msg: json.decode(res.body)['message'],color: Colors.red,);
+        return false;
       }
       notifyListeners();
 
     } else{
+      statusLogin =false;
+      notifyListeners();
       ConstantApp().toast(msg: json.decode(res.body)['message'],color: Colors.red,);
 
       print ('error') ;
-      notifyListeners();
+      return false;
     }
   }on SocketException {
+    statusLogin =false;
+    notifyListeners() ;
     ConstantApp().toast(msg:'غير متصل بالانترنت',color: Colors.red,) ;
-
-    notifyListeners();
+    return false;
   }catch (e)  {
     ConstantApp().toast(msg:'حدث خطأ ما برجاء اعادة المجاولة',color: Colors.red);
+    notifyListeners();
 
     print (e.toString() ) ;
+    return false;
   }
 
 

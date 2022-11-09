@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce_intern/providers/home_provider.dart';
 import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/home/shared_/search_widget.dart';
@@ -26,7 +27,40 @@ class ShopScreen extends StatelessWidget {
             children: [
               const SearchWidget(),
               SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-              Image.asset('assets/images/img_9.png') ,
+            CarouselSlider(
+
+              options: CarouselOptions(
+                height: MediaQuery.of(context).size.height*0.15,
+                aspectRatio: 10/20,
+                viewportFraction: 0.9,
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                reverse: false,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds:3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: true,
+                scrollDirection: Axis.horizontal,
+              ),
+              items:   provider.banners.map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return  FadeInImage.assetNetwork(
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                        imageErrorBuilder:  (c,v,b)  {
+                          return Image.asset( 'assets/images/loadingPicture.jpg');
+                        } ,
+                        placeholder: 'assets/images/loadingPicture.jpg', image:
+                    i.image??''
+                    ) ;
+                  },
+                );
+              }).toList(),
+            ) ,
+
+
               SizedBox(height: MediaQuery.of(context).size.height*0.02,),
               const TitleWidgetForCards(txt:'Categories' ),
               SizedBox(height: MediaQuery.of(context).size.height*0.02,),
