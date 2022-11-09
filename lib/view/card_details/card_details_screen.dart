@@ -5,16 +5,29 @@ import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/auth/shared/custom_button.dart';
 import 'package:e_commerce_intern/view/home/shared_/minus_plus_widget.dart';
 import 'package:flutter/animation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CardDetails extends StatelessWidget {
+class CardDetails extends StatefulWidget {
 
 static const String id='cardDetails';
 
   @override
+  State<CardDetails> createState() => _CardDetailsState();
+}
+
+class _CardDetailsState extends State<CardDetails> {
+bool _customTileExpanded = false;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0,
+      ),
       body: SafeArea(
         child: Consumer<ProductDetailsProvider>(
           builder: (context,provider,_) {
@@ -155,49 +168,43 @@ static const String id='cardDetails';
                                 .size
                                 .height * 0.03,),
 
-                            Divider(
-                              height: 2,
-                              thickness: 1,
-                            ),
-                            SizedBox(height: MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.03,),
 
 
-                            const Text('Product Details', style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),),
-                            SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Expanded(
-                                  child: Text(
-
-                                    provider.data['description'] ,
-                                    textDirection: TextDirection.ltr,
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 17
-                                    ),
-                                  ),
+                              ExpansionTile(
+                                iconColor: ConstantApp.greenColor,
+                                title:  Text('Product Details',style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color:  _customTileExpanded
+                                      ? ConstantApp.greenColor
+                                      :Colors.black,
+                                ),),
+                                trailing: Icon(
+                                  _customTileExpanded
+                                      ? Icons.arrow_circle_up
+                                      :  Icons.arrow_circle_down,
                                 ),
-                              ],
-                            ),
-                            SizedBox(height: MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.03,),
-                            Divider(
-                              height: 2,
-                              thickness: 1,
-                            ),
-                            SizedBox(height: MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.01),
+                                collapsedIconColor: ConstantApp.greenColor,
+                                children: <Widget>[
+                                  ListTile(
+
+                                    title:      Text(
+
+                                    provider.data['description'].trim() ,
+
+                                    textDirection: TextDirection.ltr,
+                                    textAlign: TextAlign.end,
+                                    style: TextStyle(
+
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 17
+                                    ),
+                                  ),),
+                                ],
+                                onExpansionChanged: (bool expanded) {
+                                  setState(() => _customTileExpanded = expanded);
+                                },
+                              ),
+                            SizedBox(height: 20,)  ,
                             Row(
                                 mainAxisAlignment: MainAxisAlignment
                                     .spaceBetween,

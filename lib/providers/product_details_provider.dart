@@ -7,12 +7,7 @@ import 'package:http/http.dart' as http;
 class ProductDetailsProvider extends ChangeNotifier {
 
   Map data = {};
-  num ? id   ;
 
-  addId( num? id ) {
-    this.id = id;
-    notifyListeners();
-  }
   showProductDetails( {required num? id} ) async{
     data = { } ;
 try {
