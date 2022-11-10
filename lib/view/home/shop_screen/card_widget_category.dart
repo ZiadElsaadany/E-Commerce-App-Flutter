@@ -82,6 +82,7 @@ class CardWidgetCategory extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: (){
+                      Provider.of<CartProvider>(context,listen: false).totalPrice+=price??0;
                       Provider.of<CartProvider >(context,listen: false).addToCarts(productId:id??0);
 
                     },

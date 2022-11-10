@@ -54,6 +54,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
 
 width: double.infinity,              child: CustomButton(
 
+            totalPrice: Provider.of<CartProvider>(context).totalPrice,
+
               word: 'Go To CheckOut', fun: ( ){ })),
           SizedBox(height: 10,),
         ],

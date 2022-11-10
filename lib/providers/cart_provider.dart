@@ -8,12 +8,8 @@ class CartProvider extends ChangeNotifier{
 
   List getCartList = [] ;
 
-  double totalPrice = 0 ;
+  num  totalPrice = 0 ;
 
-   totalPriceMethod(  price) {
-     totalPrice += price ;
-     notifyListeners();
-  }
   getCarts( ) async{
   try {
       http.Response res  = await http.get(Uri.parse('https://student.valuxapps.com/api/carts'),
@@ -64,8 +60,8 @@ class CartProvider extends ChangeNotifier{
         notifyListeners();
       }
 
-    }catch(e) { 
-      print (e.toString()) ; 
+    }catch(e) {
+      print (e.toString()) ;
       ConstantApp().toast(msg: 'حدث خطا ما', color: Colors.red) ;
       notifyListeners() ;
     }

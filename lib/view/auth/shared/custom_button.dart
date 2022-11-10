@@ -7,7 +7,7 @@ import '../../../utls/app_constant.dart';
 class CustomButton extends StatelessWidget {
     CustomButton({Key? key,required this.word,required this.fun, this.totalPrice}) : super(key: key);
 final String word;
- double ? totalPrice;
+ num ? totalPrice;
 
 final VoidCallback fun ;
   @override
@@ -29,9 +29,9 @@ final VoidCallback fun ;
           ),
         ),
           Spacer(),
-          Text('$totalPrice',
+          Text('\$ ${totalPrice!.toInt()}',
           style: TextStyle(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.grey.withOpacity(0.7),
           ),
           ),
           SizedBox( width: 10,)
