@@ -1,12 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce_intern/providers/home_provider.dart';
+import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/card_details/card_details_screen.dart';
 import 'package:e_commerce_intern/view/home/home.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/card_widget_category.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 
+import '../../../providers/cart_provider.dart';
 import '../../../providers/product_details_provider.dart';
 
 
@@ -49,7 +52,8 @@ class ListViewWidgetProductCategory extends StatelessWidget {
                         return CardDetails() ;
                       } ));
                     },
-                    child: CardWidgetCategory(
+                    child:
+                    CardWidgetCategory(
                       img: i['image'],
                       name: i['name'],
                       price: i['price'],

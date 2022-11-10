@@ -1,12 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce_intern/providers/home_provider.dart';
 import 'package:e_commerce_intern/providers/product_details_provider.dart';
+import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/card_details/card_details_screen.dart';
 import 'package:e_commerce_intern/view/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/product_model/Products.dart';
+import '../../../providers/cart_provider.dart';
 import '../../card_details/card_widget.dart';
 
 class ListViewScrollable extends StatelessWidget {
@@ -15,7 +17,7 @@ class ListViewScrollable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   CarouselSlider(
+    return    CarouselSlider(
 
       options: CarouselOptions(
         height: 400,

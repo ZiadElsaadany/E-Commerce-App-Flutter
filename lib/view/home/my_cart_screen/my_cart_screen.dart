@@ -1,5 +1,6 @@
 import 'package:e_commerce_intern/models/cart_model/cart_model.dart';
 import 'package:e_commerce_intern/providers/cart_provider.dart';
+import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/auth/shared/custom_button.dart';
 import 'package:e_commerce_intern/view/home/my_cart_screen/cart_widget.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,11 @@ class _MyCartScreenState extends State<MyCartScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return   Provider.of<CartProvider>(context).loading?  Center(
+      child: CircularProgressIndicator(
+        color: ConstantApp.greenColor,
+      ),
+    ):     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: Column(
         children: [

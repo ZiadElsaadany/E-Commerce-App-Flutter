@@ -3,6 +3,7 @@ import 'package:e_commerce_intern/providers/product_details_provider.dart';
 import 'package:e_commerce_intern/view/card_details/card_details_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/cart_provider.dart';
@@ -86,7 +87,7 @@ class CardWidgetCategory extends StatelessWidget {
                       Provider.of<CartProvider >(context,listen: false).addToCarts(productId:id??0);
 
                     },
-                    child: Image.asset(
+                    child:   Image.asset(
                       'assets/images/img_10.png',
                       width: MediaQuery.of(context).size.width * 0.08,
                     ),

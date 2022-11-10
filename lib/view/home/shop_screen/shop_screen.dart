@@ -6,7 +6,10 @@ import 'package:e_commerce_intern/view/home/shop_screen/listViewScrollable_widge
 import 'package:e_commerce_intern/view/home/shop_screen/list_view_widget_product_category.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/title_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
+
+import '../../../providers/cart_provider.dart';
 
 class ShopScreen extends StatelessWidget {
    ShopScreen({Key? key}) : super(key: key);

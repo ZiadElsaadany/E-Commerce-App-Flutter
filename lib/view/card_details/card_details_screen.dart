@@ -5,10 +5,13 @@ import 'package:e_commerce_intern/providers/product_details_provider.dart';
 import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/auth/shared/custom_button.dart';
 import 'package:e_commerce_intern/view/home/shared_/minus_plus_widget.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
+
+import '../../providers/cart_provider.dart';
 
 class CardDetails extends StatefulWidget {
   static const String id = 'cardDetails';
@@ -59,8 +62,15 @@ class _CardDetailsState extends State<CardDetails> {
                             ),
                             items: [
                                 for(int j = 0 ; j<provider.data['images'].length; j++ ) ...[
-                                  Container(
-                                    child: Image.network(provider.data['images'][j]),
+                                  Card(
+                                    elevation: 8,
+                                    child:FadeInImage.assetNetwork(
+                                      fit: BoxFit.cover,
+                                        placeholder: 'assets/images/loadingPicture.jpg',
+                                       imageErrorBuilder: ( n,b,v){
+                                         return Image.asset('assets/images/loadingPicture.jpg');
+                                       },
+                                       image:  provider.data['images'][j]),
                                   )
 
 
@@ -207,9 +217,15 @@ class _CardDetailsState extends State<CardDetails> {
                             ),
                             SizedBox(
                                 width: double.infinity,
-                                child: CustomButton(
-                                  word: 'Add To Basket',
-                                  fun: () {},
+                                child:   Provider.of<CartProvider >(context).loadingAddedOrDeleted? Center(
+                                  child: CircularProgressIndicator(
+                                    color: ConstantApp.greenColor,
+                                  ),
+                                ) :CustomButton(
+                                  word: 'Add/Delete -->Basket',
+                                  fun: () {
+                                    Provider.of<CartProvider >(context,listen: false).addToCarts(productId:provider.data['id']??0);
+                                  },
                                 )),
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.03,

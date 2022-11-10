@@ -9,37 +9,50 @@ class CartProvider extends ChangeNotifier{
   List getCartList = [] ;
 
   num  totalPrice = 0 ;
-
+bool loading= false;
   getCarts( ) async{
+    getCartList = [] ;
   try {
+    loading =true;
+    notifyListeners() ;
       http.Response res  = await http.get(Uri.parse('https://student.valuxapps.com/api/carts'),
           headers: {
             "Authorization":"j2IlQRjXyjcaDFLHPGSstHIOV29kF9jPscE3f0kOsIRCllu3o60aicxltFBBTWDiUtx5SY"
           }
       );
       if(res.statusCode == 200) {
+        loading = false;
         getCartList = json.decode(res.body)['data']['cart_items'];
         print (getCartList) ;
         notifyListeners();
       }else {
+        loading = false;
         ConstantApp().toast(msg: json.decode(res.body)['message'], color: Colors.red);
         notifyListeners();
       }
     }on SocketException {
-      ConstantApp().toast(msg: 'NO Internet', color: Colors.red);
+    loading = false;
+    ConstantApp().toast(msg: 'NO Internet', color: Colors.red);
       notifyListeners() ;
     }
 
     catch (e)  {
+      loading = false;
       ConstantApp().toast(msg: 'حدث خطا ما بالرجاء اعادة المحاولة', color: Colors.red);
       print (e.toString());
       notifyListeners();
     }
   }
 
+
+  bool loadingAddedOrDeleted = false;
+
   addToCarts({  required num? productId } ) async {
 
+
     try {
+      loadingAddedOrDeleted = true;
+      notifyListeners();
       http.Response res  = await http.post(Uri.parse('https://student.valuxapps.com/api/carts'),
           body: {
               "product_id": '$productId'
@@ -49,6 +62,7 @@ class CartProvider extends ChangeNotifier{
           }
       );
       if(res.statusCode == 200 )  {
+        loadingAddedOrDeleted = false;
 
         print('post product done') ;
         print (json.decode(res.body)['data']);
@@ -56,11 +70,13 @@ class CartProvider extends ChangeNotifier{
         ConstantApp().toast(msg: json.decode(res.body)['message'], color: Colors.green) ;
         notifyListeners() ;
       } else {
+        loadingAddedOrDeleted = false;
         ConstantApp().toast(msg: json.decode(res.body)['message'], color: Colors.red) ;
         notifyListeners();
       }
 
     }catch(e) {
+      loadingAddedOrDeleted = false;
       print (e.toString()) ;
       ConstantApp().toast(msg: 'حدث خطا ما', color: Colors.red) ;
       notifyListeners() ;
