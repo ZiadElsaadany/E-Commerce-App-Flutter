@@ -9,7 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ShopScreen extends StatelessWidget {
-  ShopScreen({Key? key}) : super(key: key);
+   ShopScreen({Key? key}) : super(key: key);
+final   List<String> images= [ 'assets/images/technology-removebg-preview.png', 'assets/images/korona-removebg-preview.png','assets/images/sports-removebg-preview.png',
+'assets/images/enara.png', 'assets/images/clothes.png'
+];
+
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +84,6 @@ class ShopScreen extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.13,
                           child: ListView.separated(
-                            shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (ctx, index) {
                                 return GestureDetector(
@@ -101,15 +104,8 @@ class ShopScreen extends StatelessWidget {
                                           width: 20,
                                         ),
                                         Expanded(
-                                          child: FadeInImage.assetNetwork(
-                                              imageErrorBuilder: (m, c, v) {
-                                                return Image.asset(
-                                                    'assets/images/loadingPicture.jpg');
-                                              },
-                                              placeholder:
-                                                  'assets/images/loadingPicture.jpg',
-                                              image: provider.categoryTypes[index]
-                                                  ['image'],
+                                          child: Image.asset(
+                                              images[index] ,
                                               width: 60),
                                         ),
                                         SizedBox(

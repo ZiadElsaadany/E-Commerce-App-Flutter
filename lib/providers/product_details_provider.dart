@@ -19,6 +19,7 @@ try {
   );
   if(res.statusCode == 200 ) {
   data.addAll(json.decode(res.body)['data']);
+
   notifyListeners();
   print (data) ;
   }

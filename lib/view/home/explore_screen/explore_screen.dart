@@ -6,8 +6,12 @@ import 'package:provider/provider.dart';
 
 class ExploreScreen extends StatelessWidget {
    ExploreScreen({Key? key}) : super(key: key);
-final List<Color> colors  =[ Color(0xffF7A593), Color(0xffF8A44C), Color(0xff53B175), Color(0xffD3B0E0),Color(0xffB7DFF5)];
-  @override
+final List<Color> colors  =const [ Color(0xffF7A593), Color(0xffF8A44C), Color(0xff53B175), Color(0xffD3B0E0), Color(0xffB7DFF5)];
+   final   List<String> images= [ 'assets/images/technology-removebg-preview.png', 'assets/images/korona-removebg-preview.png','assets/images/sports-removebg-preview.png',
+     'assets/images/enara.png', 'assets/images/clothes.png'
+   ];
+
+@override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
@@ -20,7 +24,7 @@ final List<Color> colors  =[ Color(0xffF7A593), Color(0xffF8A44C), Color(0xff53B
                  physics: BouncingScrollPhysics(),
                 gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                  childAspectRatio: 0.7
+                  childAspectRatio: 0.8
               ) ,
                   itemBuilder: (ctx,index)=> GestureDetector(
                     onTap: ( )  {
@@ -40,17 +44,11 @@ final List<Color> colors  =[ Color(0xffF7A593), Color(0xffF8A44C), Color(0xff53B
                         color:colors[index].withOpacity(0.15)
                       ),
                       child: SizedBox(
-                        height: MediaQuery.of(context).size.height*0.5,
+                        height: MediaQuery.of(context).size.height*0.3,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            FadeInImage.assetNetwork(placeholder: 'assets/images/loadingPicture.jpg',
-
-                        image: context.read<HomeProvider>().categoryTypes[index]['image'],width: MediaQuery.of(context).size.width*0.3,
-
-                            imageErrorBuilder: (x,b,v )  {
-                              return Image.asset('assets/images/loadingPicture.jpg');
-                            },
+                           Image.asset(images[index]  ,
                             ),
 
                             SizedBox(
