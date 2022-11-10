@@ -1,4 +1,5 @@
 import 'package:e_commerce_intern/models/product_model/Product_model.dart';
+import 'package:e_commerce_intern/providers/cart_provider.dart';
 import 'package:e_commerce_intern/providers/product_details_provider.dart';
 import 'package:e_commerce_intern/view/card_details/card_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,11 @@ final Products product;
                       color: Colors.black.withOpacity(0.6),
                     fontSize: 16
                   ),),
-                  Image.asset('assets/images/img_10.png',width: MediaQuery.of(context).size.width*0.08,)
+                  GestureDetector(
+                      onTap: ( )  {
+                        Provider.of<CartProvider >(context,listen: false).addToCarts(productId: product.id??0);
+                      } ,
+                      child: Image.asset('assets/images/img_10.png',width: MediaQuery.of(context).size.width*0.08,))
 
                 ],
               ),

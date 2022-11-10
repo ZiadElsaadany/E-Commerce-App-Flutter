@@ -5,17 +5,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../providers/cart_provider.dart';
+
 class CardWidgetCategory extends StatelessWidget {
-  const CardWidgetCategory({
+   CardWidgetCategory({
     Key? key,
     required this.img,
     required this.name,
     required this.price,
+    this.id
   }) : super(key: key);
 
   final String name;
   final String img;
   final num? price;
+  num? id;
 
   @override
   Widget build(BuildContext context) {
@@ -76,9 +80,15 @@ class CardWidgetCategory extends StatelessWidget {
                     '\$$price',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16,color: Colors.black.withOpacity(0.6)),
                   ),
-                  Image.asset(
-                    'assets/images/img_10.png',
-                    width: MediaQuery.of(context).size.width * 0.08,
+                  GestureDetector(
+                    onTap: (){
+                      Provider.of<CartProvider >(context,listen: false).addToCarts(productId:id??0);
+
+                    },
+                    child: Image.asset(
+                      'assets/images/img_10.png',
+                      width: MediaQuery.of(context).size.width * 0.08,
+                    ),
                   )
                 ],
               ),

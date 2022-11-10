@@ -53,6 +53,7 @@ class ListViewWidgetProductCategory extends StatelessWidget {
                       img: i['image'],
                       name: i['name'],
                       price: i['price'],
+                      id: i['id'],
 
                     ),
                   );

@@ -1,41 +1,64 @@
+import 'package:e_commerce_intern/models/cart_model/cart_model.dart';
+import 'package:e_commerce_intern/providers/cart_provider.dart';
 import 'package:e_commerce_intern/view/auth/shared/custom_button.dart';
 import 'package:e_commerce_intern/view/home/my_cart_screen/cart_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class MyCartScreen extends StatelessWidget {
+class MyCartScreen extends StatefulWidget {
   const MyCartScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
+  State<MyCartScreen> createState() => _MyCartScreenState();
+}
 
-        Divider(thickness: 2,),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+class _MyCartScreenState extends State<MyCartScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(Duration.zero, ( ) async {
+      Provider.of<CartProvider>(context,listen: false).getCarts();
+    } ) ;
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+      child: Column(
+        children: [
+          Expanded(
             child: ListView.separated(
-              physics: BouncingScrollPhysics(),
-              separatorBuilder: ( ctx,index) => Divider(
-                height: 1,
-                thickness: 2,
-              ),
-              itemCount: 10,
+                physics: BouncingScrollPhysics(),
+                separatorBuilder: ( ctx,index) => Divider(
+                  height: 1,
+                  thickness: 1,
+                ),
+                itemCount:   Provider.of<CartProvider>(context).getCartList.length,
                 itemBuilder:
-            ( ctx,index)  {
-              return  CartWidget();
-            }
+                    ( ctx,index)  {
+                  return  CartWidget(
+                    cartModel: CartModel (
+                        img: Provider.of<CartProvider>(context).getCartList[index]['product']['image'],
+                        price: Provider.of<CartProvider>(context).getCartList[index]['product']['price'],
+                        name: Provider.of<CartProvider>(context).getCartList[index]['product']['name'],
+                        id: Provider.of<CartProvider>(context).getCartList[index]['product']['id'],
+                        subName: Provider.of<CartProvider>(context).getCartList[index]['quantity'],
+                        quantity: Provider.of<CartProvider>(context).getCartList[index]['quantity']
+
+                    ),);
+                }
             ),
           ),
-        ),
-         SizedBox(
-             width: double.infinity,
-             child: Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 15.0),
-               child: CustomButton(word: 'Go to Checkout',fun:  ( )  { },),
-             )),
-        SizedBox(height: MediaQuery.of(context).size.height*0.025,),
-      ],
+          SizedBox(
+
+width: double.infinity,              child: CustomButton(
+
+              word: 'Go To CheckOut', fun: ( ){ })),
+          SizedBox(height: 10,),
+        ],
+      ),
     );
   }
 }
+/**/
