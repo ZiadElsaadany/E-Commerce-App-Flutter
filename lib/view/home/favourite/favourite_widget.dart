@@ -1,18 +1,25 @@
+import 'package:e_commerce_intern/animation/fade_animation.dart';
+import 'package:e_commerce_intern/models/cart_model/cart_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FavouriteWidget extends StatelessWidget {
-  const FavouriteWidget({Key? key}) : super(key: key);
-
+  const FavouriteWidget({Key? key,required this.cartModel}) : super(key: key);
+final CartModel cartModel ;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Row(
         children: [
-          Expanded(child: Padding(
+          Expanded(
+              flex: 2,
+              child: Padding(
             padding: const EdgeInsets.all(5.0),
-            child: Image.asset('assets/images/img_13.png'),
+            child: FadeInImage.assetNetwork(
+              placeholder: 'assets/images/loadingPicture.jpg',
+              image: cartModel.img,
+            )
           )),
           SizedBox(width: 5),
           Expanded(
@@ -21,16 +28,25 @@ class FavouriteWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text( 'Sprite Can',style: TextStyle(fontWeight:FontWeight.bold,fontSize: 18),) ,
-                Text( '335ml. Price',style: TextStyle(
-                    color: Colors.grey
-                ),) ,
+                Text( cartModel.name ,
+
+                  maxLines:  2,
+                  overflow: TextOverflow.ellipsis,
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                    color: Colors.black.withOpacity(0.6),
+
+
+                    fontWeight:FontWeight.bold,fontSize: 18),) ,
+
               ],
             ),
 
           ),
+          SizedBox(width: 10),
+
           Expanded(
-            child: Text('\$1.955',style: TextStyle(
+            child: Text('\$${cartModel.price}',style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18 ,
 
