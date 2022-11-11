@@ -1,11 +1,11 @@
 import 'package:e_commerce_intern/providers/bottomNavProvider.dart';
-import 'package:e_commerce_intern/providers/cart_provider.dart';
-import 'package:e_commerce_intern/providers/favourtie_provider.dart';
+
 import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/home/favourite/favourtie_screen.dart';
 import 'package:e_commerce_intern/view/home/my_cart_screen/my_cart_screen.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/shop_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../../providers/home_provider.dart';
 import 'account/account_screen.dart';
@@ -27,16 +27,6 @@ class _HomeState extends State<Home> {
     AccountScreen()
   ];
 
-  @override
-  void initState() {
-    Future.delayed(Duration.zero, () async {
-      Provider.of<HomeProvider>(context, listen: false).getHomeProduct();
-      Provider.of<HomeProvider>(context, listen: false).getCategories();
-      Provider.of<CartProvider>(context,listen: false).getCarts() ;
-      Provider.of<Favourite>(context,listen: false).getFavourite() ;
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +72,12 @@ class _HomeState extends State<Home> {
                         : null,
                 foregroundColor: Colors.black,
                 backgroundColor: Colors.white,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            // Status bar color
+            statusBarColor: Colors.white,
+            statusBarIconBrightness: Brightness.light, // For Android (dark icons)
+            statusBarBrightness: Brightness.light,
+          ),
                 title: Provider.of<BottomNavProvider>(context).currentIndex == 1
                     ? Text(
                         'Find Products',

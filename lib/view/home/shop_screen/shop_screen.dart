@@ -11,12 +11,25 @@ import 'package:provider/provider.dart';
 
 import '../../../providers/cart_provider.dart';
 
-class ShopScreen extends StatelessWidget {
+class ShopScreen extends StatefulWidget {
    ShopScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ShopScreen> createState() => _ShopScreenState();
+}
+
+class _ShopScreenState extends State<ShopScreen> {
 final   List<String> images= [ 'assets/images/technology-removebg-preview.png', 'assets/images/korona-removebg-preview.png','assets/images/sports-removebg-preview.png',
 'assets/images/enara.png', 'assets/images/clothes.png'
 ];
-
+@override
+void initState() {
+  Future.delayed(Duration.zero, () async {
+    Provider.of<HomeProvider>(context, listen: false).getHomeProduct();
+    Provider.of<HomeProvider>(context, listen: false).getCategories();
+  });
+  super.initState();
+}
 
   @override
   Widget build(BuildContext context) {

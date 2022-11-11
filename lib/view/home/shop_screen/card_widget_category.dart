@@ -59,7 +59,7 @@ class CardWidgetCategory extends StatelessWidget {
                         textAlign: TextAlign.end,
                         style: TextStyle(
                             color: Colors.black.withOpacity(0.5), fontWeight: FontWeight.bold),
-                        maxLines: 2,
+                        maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         // textDirection: TextDirection.rtl,
                       ),

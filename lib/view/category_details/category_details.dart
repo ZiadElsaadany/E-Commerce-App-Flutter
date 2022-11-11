@@ -19,7 +19,7 @@ static const String id= 'CategoriesDet';
   Widget build(BuildContext context) {
    CategoryDetailsModel args = ModalRoute.of(context)!.settings.arguments as CategoryDetailsModel;
     return FutureBuilder (
-      future: context.read<HomeProvider>().getProductsFromCategories(id: args.id),
+      future: Provider.of<HomeProvider>(context,listen: false).getProductsFromCategories(id: args.id),
       builder: ( ctx ,snapshot) {
         if(snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
