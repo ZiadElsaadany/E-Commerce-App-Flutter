@@ -1,4 +1,6 @@
 import 'package:e_commerce_intern/providers/bottomNavProvider.dart';
+import 'package:e_commerce_intern/providers/cart_provider.dart';
+import 'package:e_commerce_intern/providers/favourtie_provider.dart';
 import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/home/favourite/favourtie_screen.dart';
 import 'package:e_commerce_intern/view/home/my_cart_screen/my_cart_screen.dart';
@@ -30,6 +32,8 @@ class _HomeState extends State<Home> {
     Future.delayed(Duration.zero, () async {
       Provider.of<HomeProvider>(context, listen: false).getHomeProduct();
       Provider.of<HomeProvider>(context, listen: false).getCategories();
+      Provider.of<CartProvider>(context,listen: false).getCarts() ;
+      Provider.of<Favourite>(context,listen: false).getFavourite() ;
     });
     super.initState();
   }

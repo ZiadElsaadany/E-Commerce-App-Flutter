@@ -217,14 +217,18 @@ class _CardDetailsState extends State<CardDetails> {
                             ),
                             SizedBox(
                                 width: double.infinity,
-                                child:   Provider.of<CartProvider >(context).loadingAddedOrDeleted? Center(
-                                  child: CircularProgressIndicator(
-                                    color: ConstantApp.greenColor,
-                                  ),
-                                ) :CustomButton(
+                                child:
+
+                                Provider.of<CartProvider >(context).loadingAddedOrDeleted?
+                                    Center(
+                                      child: CircularProgressIndicator(
+                                        color: ConstantApp.greenColor,
+                                      ),
+                                    ):
+                                CustomButton(
                                   word: 'Add/Delete -->Basket',
                                   fun: () {
-                                    Provider.of<CartProvider >(context,listen: false).addToCarts(productId:provider.data['id']??0);
+                                    Provider.of<CartProvider >(context,listen: false).addToCarts(productId:provider.data['id']);
                                   },
                                 )),
                             SizedBox(

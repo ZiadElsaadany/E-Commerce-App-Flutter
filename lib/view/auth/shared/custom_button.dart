@@ -5,9 +5,8 @@ import 'package:provider/provider.dart';
 import '../../../utls/app_constant.dart';
 
 class CustomButton extends StatelessWidget {
-    CustomButton({Key? key,required this.word,required this.fun, this.totalPrice}) : super(key: key);
+    CustomButton({Key? key,required this.word,required this.fun}) : super(key: key);
 final String word;
- num ? totalPrice;
 
 final VoidCallback fun ;
   @override
@@ -20,25 +19,7 @@ final VoidCallback fun ;
                 borderRadius: BorderRadius.circular(12)
             ))
         ),
-        onPressed:fun, child: Provider.of<BottomNavProvider>(context).currentIndex==2 ?
-        Row( children: [
-          Spacer(),
-          Text(word,
-          style: TextStyle(
-              fontSize: 18
-          ),
-        ),
-          Spacer(),
-          Text('\$ ${totalPrice!.toInt()}',
-          style: TextStyle(
-            backgroundColor: Colors.grey.withOpacity(0.7),
-          ),
-          ),
-          SizedBox( width: 10,)
-
-
-        ],)
-        : Text(word,
+        onPressed:fun, child:  Text(word,
       style: TextStyle(
           fontSize: 18
       ),

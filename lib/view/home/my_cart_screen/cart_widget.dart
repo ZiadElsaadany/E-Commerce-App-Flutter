@@ -1,7 +1,9 @@
 import 'package:e_commerce_intern/view/home/shared_/minus_plus_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../models/cart_model/cart_model.dart';
+import '../../../providers/cart_provider.dart';
 
 
 class CartWidget extends StatelessWidget {
@@ -86,7 +88,14 @@ class CartWidget extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(Icons.backspace),
+                IconButton(icon   :        Icon (  Icons.delete, color: Colors.grey),
+
+
+                onPressed: ( ) async{
+                 await Provider.of<CartProvider >(context,listen: false).addToCarts(productId:cartModel.id);
+                  Provider.of<CartProvider >(context,listen: false).getCarts();
+                },
+                ),
                 SizedBox(
                   height: 30,
                 ),

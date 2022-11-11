@@ -1,4 +1,5 @@
 import 'package:e_commerce_intern/animation/fade_animation.dart';
+import 'package:e_commerce_intern/providers/cart_provider.dart';
 import 'package:e_commerce_intern/providers/favourtie_provider.dart';
 import 'package:e_commerce_intern/providers/product_details_provider.dart';
 import 'package:e_commerce_intern/utls/app_constant.dart';
@@ -38,8 +39,9 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Image.asset('assets/images/no_fav.jpg'),
+              Image.asset('assets/images/noFavpng.png'),
             ],
           )
           :  Provider.of<Favourite>(context).loadingWhenGet? Center(
@@ -69,16 +71,48 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                             );
                             Navigator.pushNamed(context, CardDetails.id);
                           },
-                          child: FavouriteWidget(
+                          child: Dismissible(
+                            key: UniqueKey( ) ,
 
-                            cartModel: CartModel (
-                                img: Provider.of<Favourite>(context).fav[index]['product'] ['image'] ,
-                                price: Provider.of<Favourite>(context).fav[index] ['product']['price'],
-                                name: Provider.of<Favourite>(context).fav[index] ['product']['name'],
-                                id: Provider.of<Favourite>(context).fav[index]['product'] ['id'],
-                                subName: Provider.of<Favourite>(context).fav[index] ['product']['discount'],
-                                quantity: Provider.of<Favourite>(context).fav[index]['product'] ['discount']
 
+                            onDismissed: ( direction) async{
+                             await Provider.of<Favourite>(context,listen: false).addToFav(productId: Provider.of<Favourite>(context,listen: false).fav[index]['product'] ['id']);
+                              Provider.of<Favourite>(context,listen: false).getFavourite() ;
+                              setState(() {});
+                            },
+                            background:Container(
+                              alignment: Alignment.centerLeft,
+                              width: double.infinity,
+                              decoration:  const BoxDecoration(
+                                  color: Colors.red
+                              ),
+                              child:  const Padding(
+                                padding: EdgeInsets.only(left: 10.0),
+                                child: Icon(
+                                  Icons.delete, color: Colors.white,
+                                  size: 40,
+                                ),
+                              ),
+                            ) ,
+                            secondaryBackground:Container(
+                              alignment: Alignment.centerLeft,
+                              decoration:  BoxDecoration(
+                                color: Colors.white.withOpacity(0.7),
+                              ),
+                            ) ,
+
+
+                            child: FavouriteWidget(
+
+                              cartModel: CartModel (
+                                  img: Provider.of<Favourite>(context).fav[index]['product'] ['image'] ,
+                                  price: Provider.of<Favourite>(context).fav[index] ['product']['price'],
+                                  name: Provider.of<Favourite>(context).fav[index] ['product']['name'],
+                                  id: Provider.of<Favourite>(context).fav[index]['product'] ['id'],
+                                  subName: Provider.of<Favourite>(context).fav[index] ['product']['discount'],
+                                  quantity: Provider.of<Favourite>(context).fav[index]['product'] ['discount']
+
+                              ),
                             ),
                           ),
                         ))
@@ -86,7 +120,11 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
           ),
           SizedBox(
               width: double.infinity,
-              child: CustomButton(word: 'Add All To Cart', fun: (){}
+              child: CustomButton(word: 'Add All To Cart', fun: (){
+                      for(int i = 0; i<Provider.of<Favourite>(context,listen: false).fav.length ; i++ ) {
+                        Provider.of<CartProvider>(context,listen: false).addToCarts(productId: Provider.of<Favourite>(context,listen: false).fav[i]['product'] ['id']);
+                      }
+              }
               ,)),
           SizedBox(height: MediaQuery.of(context).size.height*0.02,),
 

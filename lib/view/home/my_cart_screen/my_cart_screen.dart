@@ -4,7 +4,11 @@ import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/auth/shared/custom_button.dart';
 import 'package:e_commerce_intern/view/home/my_cart_screen/cart_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
+
+import '../../../providers/product_details_provider.dart';
+import '../../card_details/card_details_screen.dart';
 
 class MyCartScreen extends StatefulWidget {
   const MyCartScreen({Key? key}) : super(key: key);
@@ -28,7 +32,23 @@ class _MyCartScreenState extends State<MyCartScreen> {
       child: CircularProgressIndicator(
         color: ConstantApp.greenColor,
       ),
-    ):     Padding(
+    ):   Provider.of<CartProvider>(context).getCartList.isEmpty ? 
+    
+    Center(child: Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset('assets/images/cart.png',width:
+          MediaQuery.of(context).size.width*0.35
+          ,color: Colors.grey,),
+        const SizedBox(height: 20,),
+         Text('No Products in your Cart ',style: TextStyle(
+          color: Colors.black.withOpacity(0.6),
+           fontWeight:FontWeight.bold,
+           fontSize: 18
+        ),)
+      ],
+    )) : Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: Column(
         children: [
@@ -42,16 +62,25 @@ class _MyCartScreenState extends State<MyCartScreen> {
                 itemCount:   Provider.of<CartProvider>(context).getCartList.length,
                 itemBuilder:
                     ( ctx,index)  {
-                  return  CartWidget(
-                    cartModel: CartModel (
-                        img: Provider.of<CartProvider>(context).getCartList[index]['product']['image'],
-                        price: Provider.of<CartProvider>(context).getCartList[index]['product']['price'],
-                        name: Provider.of<CartProvider>(context).getCartList[index]['product']['name'],
-                        id: Provider.of<CartProvider>(context).getCartList[index]['product']['id'],
-                        subName: Provider.of<CartProvider>(context).getCartList[index]['quantity'],
-                        quantity: Provider.of<CartProvider>(context).getCartList[index]['quantity']
+                  return  GestureDetector(
+                    onTap: ( )  {
+                      Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id:
+                      Provider.of<CartProvider>(context,listen: false).getCartList[index]['product'] ['id']
+                      );
+                      Navigator.pushNamed(context, CardDetails.id);
 
-                    ),);
+                    } ,
+                    child: CartWidget(
+                      cartModel: CartModel (
+                          img: Provider.of<CartProvider>(context).getCartList[index]['product']['image'],
+                          price: Provider.of<CartProvider>(context).getCartList[index]['product']['price'],
+                          name: Provider.of<CartProvider>(context).getCartList[index]['product']['name'],
+                          id: Provider.of<CartProvider>(context).getCartList[index]['product']['id'],
+                          subName: Provider.of<CartProvider>(context).getCartList[index]['quantity'],
+                          quantity: Provider.of<CartProvider>(context).getCartList[index]['quantity']
+
+                      ),),
+                  );
                 }
             ),
           ),
@@ -59,7 +88,6 @@ class _MyCartScreenState extends State<MyCartScreen> {
 
 width: double.infinity,              child: CustomButton(
 
-            totalPrice: Provider.of<CartProvider>(context).totalPrice,
 
               word: 'Go To CheckOut', fun: ( ){ })),
           SizedBox(height: 10,),

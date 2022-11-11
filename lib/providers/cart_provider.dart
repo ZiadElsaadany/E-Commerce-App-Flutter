@@ -23,7 +23,6 @@ bool loading= false;
       if(res.statusCode == 200) {
         loading = false;
         getCartList = json.decode(res.body)['data']['cart_items'];
-        print (getCartList) ;
         notifyListeners();
       }else {
         loading = false;

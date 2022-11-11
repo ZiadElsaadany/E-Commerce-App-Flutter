@@ -13,6 +13,7 @@ class Favourite extends ChangeNotifier {
 
   bool loadingWhenGet= false;
   getFavourite( ) async{
+    fav= [] ;
     try {
       loadingWhenGet = true;
       notifyListeners();

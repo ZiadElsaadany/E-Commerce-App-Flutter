@@ -1,9 +1,5 @@
-import 'package:e_commerce_intern/models/product_model/Product_model.dart';
-import 'package:e_commerce_intern/providers/product_details_provider.dart';
-import 'package:e_commerce_intern/view/card_details/card_details_screen.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/cart_provider.dart';
@@ -83,8 +79,8 @@ class CardWidgetCategory extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: (){
-                      Provider.of<CartProvider>(context,listen: false).totalPrice+=price??0;
                       Provider.of<CartProvider >(context,listen: false).addToCarts(productId:id??0);
+                      // Provider.of<CartProvider>(context,listen: false).getCar;
 
                     },
                     child:   Image.asset(

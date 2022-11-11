@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).size.height*0.12,
                     ),
-                    FadeAnimation(1.2, child:            Text( 'Loging',
+                    FadeAnimation(1.2, child:            Text( 'Login',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 26
@@ -120,7 +120,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     FadeAnimation(1.2, child:      SignInSignUp(route_name: RegisterScreen.id, txt1:
                     'Don’t have an account? '
-                        , txt2: 'Singup')),
+                        , txt2: 'Sign Up')),
 
 
 
