@@ -5,7 +5,6 @@ import 'package:e_commerce_intern/providers/product_details_provider.dart';
 import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/auth/shared/custom_button.dart';
 import 'package:e_commerce_intern/view/home/shared_/minus_plus_widget.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -94,14 +93,15 @@ class _CardDetailsState extends State<CardDetails> {
                                   child: IconButton(
                                       onPressed: () {
                                         Provider.of<Favourite>(context,
-                                                listen: false)
+                                            listen: false)
                                             .addToFav(
-                                                productId: provider.data['id']);
+                                            productId: provider.data['id']);
+                                        Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: provider.data['id']) ;
                                       },
                                       icon: Icon(
-                                        Icons.favorite,
+                                        provider.data["in_favorites"] ?  Icons.favorite  :  Icons.favorite_border_outlined,
                                         size: 30,
-                                        color: Colors.grey,
+                                        color: Colors.red,
                                       )),
                                 ),
                                 Expanded(
@@ -225,10 +225,16 @@ class _CardDetailsState extends State<CardDetails> {
                                         color: ConstantApp.greenColor,
                                       ),
                                     ):
-                                CustomButton(
-                                  word: 'Add/Delete -->Basket',
-                                  fun: () {
+                Provider.of<ProductDetailsProvider>(context).data['in_cart']==null ? Center(child: const CircularProgressIndicator()) :     CustomButton(
+                                  word: Provider.of<ProductDetailsProvider>(context).data['in_cart'] && Provider.of<ProductDetailsProvider>(context).data['in_cart']!=null?'Delete From Basket' : 'Add To Basket',
+                                  fun: ()  {
+                                    print (Provider.of<ProductDetailsProvider>(context,listen: false).data['in_cart']);
+
                                     Provider.of<CartProvider >(context,listen: false).addToCarts(productId:provider.data['id']);
+                                     Provider.of<ProductDetailsProvider >(context,listen: false).showProductDetails(id: provider.data['id']);
+                                    print (Provider.of<ProductDetailsProvider>(context,listen: false).data['in_cart']);
+                                    Provider.of<CartProvider >(context,listen: false).getCarts();
+
                                   },
                                 )),
                             SizedBox(

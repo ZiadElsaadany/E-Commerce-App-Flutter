@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/cart_provider.dart';
+import '../../../providers/product_details_provider.dart';
 
 class CardWidgetCategory extends StatelessWidget {
    CardWidgetCategory({
@@ -80,6 +81,8 @@ class CardWidgetCategory extends StatelessWidget {
                   GestureDetector(
                     onTap: (){
                       Provider.of<CartProvider >(context,listen: false).addToCarts(productId:id??0);
+                      Provider.of<ProductDetailsProvider >(context,listen: false).showProductDetails(id: id);
+
                       // Provider.of<CartProvider>(context,listen: false).getCar;
 
                     },

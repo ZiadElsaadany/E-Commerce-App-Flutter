@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:e_commerce_intern/providers/cart_provider.dart';
 import 'package:e_commerce_intern/providers/home_provider.dart';
 import 'package:e_commerce_intern/view/card_details/card_details_screen.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/card_widget_category.dart';

@@ -16,7 +16,7 @@ class CartWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(flex: 1, child: FadeInImage.assetNetwork(
+          Expanded(flex:2, child: FadeInImage.assetNetwork(
               placeholder: 'assets/images/loadingPicture.jpg',
               image: cartModel.img)),
           SizedBox(
@@ -91,9 +91,10 @@ class CartWidget extends StatelessWidget {
                 IconButton(icon   :        Icon (  Icons.delete, color: Colors.grey),
 
 
-                onPressed: ( ) async{
-                 await Provider.of<CartProvider >(context,listen: false).addToCarts(productId:cartModel.id);
+                onPressed: ( ) {
+                  Provider.of<CartProvider >(context,listen: false).addToCarts(productId:cartModel.id);
                   Provider.of<CartProvider >(context,listen: false).getCarts();
+
                 },
                 ),
                 SizedBox(

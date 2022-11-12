@@ -71,8 +71,8 @@ final Products product;
                   ),),
                   GestureDetector(
                       onTap: ( )  {
-                        Provider.of<CartProvider>(context,listen: false).totalPrice+=product.price!;
                         Provider.of<CartProvider >(context,listen: false).addToCarts(productId: product.id??0);
+                        Provider.of<ProductDetailsProvider >(context,listen: false).showProductDetails(id:product.id);
                       } ,
                       child: Image.asset('assets/images/img_10.png',width: MediaQuery.of(context).size.width*0.08,))
 

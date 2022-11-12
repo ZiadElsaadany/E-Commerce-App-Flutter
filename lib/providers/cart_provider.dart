@@ -8,37 +8,33 @@ class CartProvider extends ChangeNotifier{
 
   List getCartList = [] ;
 
-  num  totalPrice = 0 ;
-bool loading= false;
-  getCarts( ) async{
-    getCartList = [] ;
-  try {
-    loading =true;
-    notifyListeners() ;
-      http.Response res  = await http.get(Uri.parse('https://student.valuxapps.com/api/carts'),
-          headers: {
-            "Authorization":"j2IlQRjXyjcaDFLHPGSstHIOV29kF9jPscE3f0kOsIRCllu3o60aicxltFBBTWDiUtx5SY"
-          }
-      );
-      if(res.statusCode == 200) {
-        loading = false;
-        getCartList = json.decode(res.body)['data']['cart_items'];
-        notifyListeners();
-      }else {
-        loading = false;
-        ConstantApp().toast(msg: json.decode(res.body)['message'], color: Colors.red);
-        notifyListeners();
-      }
-    }on SocketException {
-    loading = false;
-    ConstantApp().toast(msg: 'NO Internet', color: Colors.red);
-      notifyListeners() ;
-    }
 
-    catch (e)  {
+
+bool loading= false;
+Map datta ={ };
+late bool inCart;
+
+
+  getCarts( ) async {
+    getCartList = [];
+
+    loading = true;
+    notifyListeners();
+    http.Response res = await http.get(
+        Uri.parse('https://student.valuxapps.com/api/carts'),
+        headers: {
+          "Authorization": "j2IlQRjXyjcaDFLHPGSstHIOV29kF9jPscE3f0kOsIRCllu3o60aicxltFBBTWDiUtx5SY"
+        }
+    );
+    if (res.statusCode == 200) {
       loading = false;
-      ConstantApp().toast(msg: 'حدث خطا ما بالرجاء اعادة المحاولة', color: Colors.red);
-      print (e.toString());
+      datta = json.decode(res.body)['data'];
+      getCartList = json.decode(res.body)['data']['cart_items'];
+      notifyListeners();
+    } else {
+      loading = false;
+      ConstantApp().toast(
+          msg: json.decode(res.body)['message'], color: Colors.red);
       notifyListeners();
     }
   }

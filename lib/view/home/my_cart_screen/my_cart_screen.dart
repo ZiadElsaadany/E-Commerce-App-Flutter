@@ -2,6 +2,7 @@ import 'package:e_commerce_intern/models/cart_model/cart_model.dart';
 import 'package:e_commerce_intern/providers/cart_provider.dart';
 import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/auth/shared/custom_button.dart';
+import 'package:e_commerce_intern/view/home/my_cart_screen/bottom_sheet_screen.dart';
 import 'package:e_commerce_intern/view/home/my_cart_screen/cart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -67,6 +68,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                       Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id:
                       Provider.of<CartProvider>(context,listen: false).getCartList[index]['product'] ['id']
                       );
+
                       Navigator.pushNamed(context, CardDetails.id);
 
                     } ,
@@ -89,7 +91,16 @@ class _MyCartScreenState extends State<MyCartScreen> {
 width: double.infinity,              child: CustomButton(
 
 
-              word: 'Go To CheckOut', fun: ( ){ })),
+              word: 'Go To CheckOut', fun: ( ){
+              // print (Provider.of<CartProvider>(context,listen: false).datta['total']);
+            showModalBottomSheet(
+              context: context ,
+              builder: (context)  {
+                return BottomSheetScreen();
+              }
+            );
+
+          })),
           SizedBox(height: 10,),
         ],
       ),
