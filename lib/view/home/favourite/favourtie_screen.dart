@@ -1,10 +1,7 @@
-import 'package:e_commerce_intern/animation/fade_animation.dart';
 import 'package:e_commerce_intern/providers/authProvider.dart';
-import 'package:e_commerce_intern/providers/cart_provider.dart';
 import 'package:e_commerce_intern/providers/favourtie_provider.dart';
 import 'package:e_commerce_intern/providers/product_details_provider.dart';
 import 'package:e_commerce_intern/utls/app_constant.dart';
-import 'package:e_commerce_intern/view/auth/shared/custom_button.dart';
 import 'package:e_commerce_intern/view/card_details/card_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -61,79 +58,78 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
       ),
           )  :  Column(
         children: [
-          Divider(height: 2,thickness: 1,),
+          const Divider(height: 2,thickness: 1,),
           Expanded(
             child: ListView.separated(
                 itemCount: Provider.of<Favourite>(context).fav.length,
                 separatorBuilder: (ctx,index){
-                  return Divider(
+                  return const Divider(
                     height: 2,
                     thickness: 1,
                   );
                 } ,
-                itemBuilder: ( ctx,index )=> Container(
-                    child: SizedBox(
-                        height: MediaQuery.of(context).size.height*0.20 ,
-                        child: SizedBox(child: GestureDetector(
-                          onTap: ( ) {
-                            Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(
-                                token:    Provider.of<AuthProvider>(context,listen: false).token,
+                itemBuilder: ( ctx,index )=> SizedBox(
+                    height: MediaQuery.of(context).size.height*0.20 ,
+                    child: SizedBox(child: GestureDetector(
+                      onTap: ( ) {
+                        Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(
+                            token:    Provider.of<AuthProvider>(context,listen: false).token,
 
-                                id:
+                            id:
                             Provider.of<Favourite>(context,listen: false).fav[index]['product'] ['id']
-                            );
-                            Navigator.pushNamed(context, CardDetails.id);
-                          },
-                          child: Dismissible(
-                            key: UniqueKey( ) ,
+                        );
+                        Navigator.pushNamed(context, CardDetails.id);
+                      },
+                      child: Dismissible(
+                        key: UniqueKey( ) ,
 
 
-                            onDismissed: ( direction) async{
-                             await Provider.of<Favourite>(context,listen: false).addToFav(
-                                 token:    Provider.of<AuthProvider>(context,listen: false).token,
-                                 productId: Provider.of<Favourite>(context,listen: false).fav[index]['product'] ['id']);
-                              Provider.of<Favourite>(context,listen: false).getFavourite(
-                                token:    Provider.of<AuthProvider>(context,listen: false).token,
-                              ) ;
-                              setState(() {});
-                            },
-                            background:Container(
-                              alignment: Alignment.centerLeft,
-                              width: double.infinity,
-                              decoration:  const BoxDecoration(
-                                  color: Colors.red
-                              ),
-                              child:  const Padding(
-                                padding: EdgeInsets.only(left: 10.0),
-                                child: Icon(
-                                  Icons.delete, color: Colors.white,
-                                  size: 40,
-                                ),
-                              ),
-                            ) ,
-                            secondaryBackground:Container(
-                              alignment: Alignment.centerLeft,
-                              decoration:  BoxDecoration(
-                                color: Colors.white.withOpacity(0.7),
-                              ),
-                            ) ,
-
-
-                            child: FavouriteWidget(
-
-                              cartModel: CartModel (
-                                  img: Provider.of<Favourite>(context).fav[index]['product'] ['image'] ,
-                                  price: Provider.of<Favourite>(context).fav[index] ['product']['price'],
-                                  name: Provider.of<Favourite>(context).fav[index] ['product']['name'],
-                                  id: Provider.of<Favourite>(context).fav[index]['product'] ['id'],
-                                  subName: Provider.of<Favourite>(context).fav[index] ['product']['discount'],
-                                  quantity: Provider.of<Favourite>(context).fav[index]['product'] ['discount']
-
-                              ),
+                        onDismissed: ( direction) {
+                           Provider.of<Favourite>(context,listen: false).addToFav(
+                              token:    Provider.of<AuthProvider>(context,listen: false).token,
+                              productId: Provider.of<Favourite>(context,listen: false).fav[index]['product'] ['id']);
+                               Provider.of<Favourite>(context,listen: false).getFavourite(
+                            token:    Provider.of<AuthProvider>(context,listen: false).token,
+                          ) ;
+                          setState(() {});
+                        },
+                        background:Container(
+                          alignment: Alignment.centerLeft,
+                          width: double.infinity,
+                          decoration:  const BoxDecoration(
+                              color: Colors.red
+                          ),
+                          child:  const Padding(
+                            padding: EdgeInsets.only(left: 10.0),
+                            child: Icon(
+                              Icons.delete, color: Colors.white,
+                              size: 40,
                             ),
                           ),
-                        ))
-                    ))),
+                        ) ,
+                        secondaryBackground:Container(
+                          alignment: Alignment.centerLeft,
+                          decoration:  BoxDecoration(
+                            color: Colors.white.withOpacity(0.7),
+                          ),
+                        ) ,
+
+
+                        child: FavouriteWidget(
+
+                          cartModel: CartModel (
+                              img: Provider.of<Favourite>(context).fav[index]['product'] ['image'] ,
+                              price: Provider.of<Favourite>(context).fav[index] ['product']['price'],
+                              name: Provider.of<Favourite>(context).fav[index] ['product']['name'],
+                              id: Provider.of<Favourite>(context).fav[index]['product'] ['id'],
+                              subName: Provider.of<Favourite>(context).fav[index] ['product']['discount'],
+                              quantity: Provider.of<Favourite>(context).fav[index]['product'] ['discount']
+
+                          ),
+                        ),
+                      ),
+                    ))
+                )),
           ),
           // SizedBox(
           //     width: double.infinity,

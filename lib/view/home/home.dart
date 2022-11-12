@@ -1,4 +1,5 @@
 import 'package:e_commerce_intern/providers/bottomNavProvider.dart';
+import 'package:e_commerce_intern/providers/profile_provider.dart';
 
 import 'package:e_commerce_intern/utls/app_constant.dart';
 import 'package:e_commerce_intern/view/home/favourite/favourtie_screen.dart';
@@ -15,6 +16,8 @@ import 'explore_screen/explore_screen.dart';
 class Home extends StatefulWidget {
   static const String id = 'home';
 
+  const Home({Key? key}) : super(key: key);
+
   @override
   State<Home> createState() => _HomeState();
 }
@@ -23,9 +26,9 @@ class _HomeState extends State<Home> {
   List<Widget> screens = [
     ShopScreen(),
     ExploreScreen(),
-    MyCartScreen(),
-    FavouriteScreen(),
-    AccountScreen()
+    const MyCartScreen(),
+    const FavouriteScreen(),
+    const AccountScreen()
   ];
   @override
   void initState() {
@@ -35,6 +38,9 @@ class _HomeState extends State<Home> {
         token:    Provider.of<AuthProvider>(context,listen: false).token,
       );
       Provider.of<HomeProvider>(context, listen: false).getCategories();
+      Provider.of<ProfileProvider>(context, listen: false).getProfile(
+        token:    Provider.of<AuthProvider>(context,listen: false).token
+      );
     });
     super.initState();
   }
@@ -57,19 +63,19 @@ class _HomeState extends State<Home> {
                         ? Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Image.asset(
                                 'assets/images/img_2.png',
                                 width: 30,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
+                                children: const [
                                   Icon(Icons.not_listed_location_sharp),
                                   Text(
                                     'Tanta, Sebrbay',
@@ -85,20 +91,20 @@ class _HomeState extends State<Home> {
                         : null,
                 foregroundColor: Colors.black,
                 backgroundColor: Colors.white,
-          systemOverlayStyle: SystemUiOverlayStyle(
+          systemOverlayStyle: const SystemUiOverlayStyle(
             // Status bar color
             statusBarColor: Colors.white,
             statusBarIconBrightness: Brightness.light, // For Android (dark icons)
             statusBarBrightness: Brightness.light,
           ),
                 title: Provider.of<BottomNavProvider>(context).currentIndex == 1
-                    ? Text(
+                    ? const Text(
                         'Find Products',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       )
                     : Provider.of<BottomNavProvider>(context).currentIndex == 2
-                        ? Text(
+                        ? const Text(
                             'My Cart',
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
@@ -106,7 +112,7 @@ class _HomeState extends State<Home> {
                         : Provider.of<BottomNavProvider>(context)
                                     .currentIndex ==
                                 3
-                            ? Text(
+                            ? const Text(
                                 'My Favourite',
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
@@ -126,7 +132,7 @@ class _HomeState extends State<Home> {
           showSelectedLabels: true,
           currentIndex: Provider.of<BottomNavProvider>(context).currentIndex,
           showUnselectedLabels: true,
-          items: [
+          items: const [
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.store,

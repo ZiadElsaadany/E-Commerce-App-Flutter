@@ -4,6 +4,7 @@ import 'package:e_commerce_intern/providers/cart_provider.dart';
 import 'package:e_commerce_intern/providers/favourtie_provider.dart';
 import 'package:e_commerce_intern/providers/home_provider.dart';
 import 'package:e_commerce_intern/providers/product_details_provider.dart';
+import 'package:e_commerce_intern/providers/profile_provider.dart';
 import 'package:e_commerce_intern/providers/search_provider.dart';
 import 'package:e_commerce_intern/view/auth/login_screen/login_screen.dart';
 import 'package:e_commerce_intern/view/auth/register_screen/register_screen.dart';
@@ -36,6 +37,7 @@ void main (   ) {
         ChangeNotifierProvider(create: (ctx)=>CartProvider()),
         ChangeNotifierProvider(create: (ctx)=>Favourite()),
         ChangeNotifierProvider(create: (ctx)=>SearchProvider()),
+        ChangeNotifierProvider(create: (ctx)=>ProfileProvider()),
       ],
       child: Ecommerce()));
 }
