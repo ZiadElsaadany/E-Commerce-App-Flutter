@@ -9,7 +9,6 @@ import 'package:e_commerce_intern/view/auth/login_screen/login_screen.dart';
 import 'package:e_commerce_intern/view/auth/register_screen/register_screen.dart';
 import 'package:e_commerce_intern/view/card_details/card_details_screen.dart';
 import 'package:e_commerce_intern/view/category_details/category_details.dart';
-import 'package:e_commerce_intern/view/home/favourite/favourite_widget.dart';
 import 'package:e_commerce_intern/view/home/home.dart';
 import 'package:e_commerce_intern/view/onboarding_screen/onboarding_screen.dart';
 import 'package:e_commerce_intern/view/search/search_screen.dart';
@@ -22,9 +21,9 @@ import 'package:provider/provider.dart';
 void main (   ) {
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.black, // navigation bar color
-    statusBarColor: Colors.white,
-    statusBarBrightness: Brightness.light// status bar color
+    systemNavigationBarColor: Colors.white, // navigation bar color
+    statusBarColor: Colors.black,
+    statusBarBrightness: Brightness.dark// status bar color
   ));
   runApp( MultiProvider(
       providers: [

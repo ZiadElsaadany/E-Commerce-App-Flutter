@@ -43,13 +43,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset('assets/images/cart.png',width:
-          MediaQuery.of(context).size.width*0.35
+          MediaQuery.of(context).size.width*0.2
           ,color: Colors.grey,),
         const SizedBox(height: 20,),
          Text('No Products in your Cart ',style: TextStyle(
-          color: Colors.black.withOpacity(0.6),
+          color: Colors.black.withOpacity(0.4),
            fontWeight:FontWeight.bold,
-           fontSize: 18
+           fontSize: 16
         ),)
       ],
     )) : Padding(

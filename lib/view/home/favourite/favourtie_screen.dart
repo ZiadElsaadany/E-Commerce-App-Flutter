@@ -33,20 +33,27 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return FadeAnimation(1, child: Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 5),
       child:   Provider.of<Favourite>(context,listen: false).fav.isEmpty&&
           Provider.of<Favourite>(context).loadingWhenGet==false
       ?
 
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Image.asset('assets/images/noFavpng.png'),
-            ],
-          )
+      Center(child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset('assets/images/cart.png',width:
+          MediaQuery.of(context).size.width*0.2
+            ,color: Colors.grey,),
+          const SizedBox(height: 20,),
+          Text('No Products in your Favorite ',style: TextStyle(
+              color: Colors.black.withOpacity(0.4),
+              fontWeight:FontWeight.bold,
+              fontSize: 16
+          ),)
+        ],
+      ))
           :  Provider.of<Favourite>(context).loadingWhenGet? Center(
             child: CircularProgressIndicator(
               color: ConstantApp.greenColor,
@@ -142,6 +149,6 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
 
         ],
       ),
-    ));
+    );
   }
 }
