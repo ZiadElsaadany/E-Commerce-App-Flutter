@@ -17,7 +17,7 @@ Map datta ={ };
 late bool inCart;
 
 
-  getCarts( ) async {
+  getCarts( { required String  token}) async {
     getCartList = [];
 
     loading = true;
@@ -25,7 +25,7 @@ late bool inCart;
     http.Response res = await http.get(
         Uri.parse('https://student.valuxapps.com/api/carts'),
         headers: {
-          "Authorization": "j2IlQRjXyjcaDFLHPGSstHIOV29kF9jPscE3f0kOsIRCllu3o60aicxltFBBTWDiUtx5SY"
+          "Authorization": token
         }
     );
     if (res.statusCode == 200) {
@@ -44,7 +44,7 @@ late bool inCart;
 
   bool loadingAddedOrDeleted = false;
 
-  addToCarts({  required num? productId } ) async {
+  addToCarts({  required num? productId,required String token } ) async {
 
 
     try {
@@ -55,7 +55,7 @@ late bool inCart;
               "product_id": '$productId'
           },
           headers: {
-            "Authorization":"j2IlQRjXyjcaDFLHPGSstHIOV29kF9jPscE3f0kOsIRCllu3o60aicxltFBBTWDiUtx5SY"
+            "Authorization":token
           }
       );
       if(res.statusCode == 200 )  {

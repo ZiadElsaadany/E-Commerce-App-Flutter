@@ -6,6 +6,7 @@ import 'package:e_commerce_intern/view/home/shop_screen/card_widget_category.dar
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../providers/authProvider.dart';
 import '../../../providers/product_details_provider.dart';
 
 
@@ -42,7 +43,9 @@ class ListViewWidgetProductCategory extends StatelessWidget {
                 builder: (BuildContext context) {
                   return GestureDetector(
                     onTap: ( ) {
-                      Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: i['id']);
+                      Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(
+                          token:    Provider.of<AuthProvider>(context,listen: false).token,
+                          id: i['id']);
 
                       // Provider.of<HomeProvider>(context,listen: false).getNameCategory(name: i['name']);
                       Navigator.push(context, MaterialPageRoute(builder: (ctx) {

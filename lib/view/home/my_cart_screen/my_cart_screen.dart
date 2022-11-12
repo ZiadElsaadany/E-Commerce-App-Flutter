@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 
+import '../../../providers/authProvider.dart';
 import '../../../providers/product_details_provider.dart';
 import '../../card_details/card_details_screen.dart';
 
@@ -24,7 +25,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
     // TODO: implement initState
     super.initState();
     Future.delayed(Duration.zero, ( ) async {
-      Provider.of<CartProvider>(context,listen: false).getCarts();
+      Provider.of<CartProvider>(context,listen: false).getCarts(
+          token: Provider.of<AuthProvider>(context,listen: false).token
+      );
     } ) ;
   }
   @override
@@ -65,7 +68,10 @@ class _MyCartScreenState extends State<MyCartScreen> {
                     ( ctx,index)  {
                   return  GestureDetector(
                     onTap: ( )  {
-                      Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id:
+                      Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(
+                          token:    Provider.of<AuthProvider>(context,listen: false).token,
+
+                          id:
                       Provider.of<CartProvider>(context,listen: false).getCartList[index]['product'] ['id']
                       );
 

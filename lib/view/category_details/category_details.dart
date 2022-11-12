@@ -7,6 +7,7 @@ import 'package:e_commerce_intern/view/home/shop_screen/card_widget_category.dar
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/authProvider.dart';
 import '../../providers/product_details_provider.dart';
 import '../card_details/card_details_screen.dart';
 
@@ -18,7 +19,9 @@ static const String id= 'CategoriesDet';
   Widget build(BuildContext context) {
    CategoryDetailsModel args = ModalRoute.of(context)!.settings.arguments as CategoryDetailsModel;
     return FutureBuilder (
-      future: Provider.of<HomeProvider>(context,listen: false).getProductsFromCategories(id: args.id),
+      future: Provider.of<HomeProvider>(context,listen: false).getProductsFromCategories(
+          token:    Provider.of<AuthProvider>(context,listen: false).token,
+          id: args.id),
       builder: ( ctx ,snapshot) {
         if(snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
@@ -75,7 +78,9 @@ static const String id= 'CategoriesDet';
 
                 itemBuilder: (ctx,index)=>GestureDetector(
                   onTap: ( ) {
-                    Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: context.read<HomeProvider>().productsFromCategory[index]['id']);
+                    Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(
+                        token:    Provider.of<AuthProvider>(context,listen: false).token,
+                        id: context.read<HomeProvider>().productsFromCategory[index]['id']);
                     Navigator.push(context, MaterialPageRoute(builder: (ctx) {
                       return CardDetails() ;
                     } ));

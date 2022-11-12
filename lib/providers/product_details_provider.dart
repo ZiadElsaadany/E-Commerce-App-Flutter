@@ -30,13 +30,13 @@ class ProductDetailsProvider extends ChangeNotifier {
     }
     notifyListeners() ;
   }
-  showProductDetails( {required num? id} ) async{
+  showProductDetails( {required num? id,required String token} ) async{
     data = { } ;
 try {
   http.Response res = await http.get(
       Uri.parse('https://student.valuxapps.com/api/products/$id'),
       headers: {
-        "Authorization": "j2IlQRjXyjcaDFLHPGSstHIOV29kF9jPscE3f0kOsIRCllu3o60aicxltFBBTWDiUtx5SY"
+        "Authorization": token
       }
   );
   if(res.statusCode == 200 ) {

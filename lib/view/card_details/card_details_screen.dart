@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/authProvider.dart';
 import '../../providers/cart_provider.dart';
 
 class CardDetails extends StatefulWidget {
@@ -32,7 +33,9 @@ class _CardDetailsState extends State<CardDetails> {
           elevation: 0,
           leading: IconButton(
             onPressed: () {
-               Provider.of<CartProvider>(context,listen: false).getCarts();
+               Provider.of<CartProvider>(context,listen: false).getCarts(
+                 token: Provider.of<AuthProvider>(context,listen: false).token
+               );
               Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios),
@@ -102,6 +105,7 @@ class _CardDetailsState extends State<CardDetails> {
                                         Provider.of<Favourite>(context,
                                             listen: false)
                                             .addToFav(
+                                            token:    Provider.of<AuthProvider>(context,listen: false).token,
                                             productId: provider.data['id']);
                                         Provider.of<ProductDetailsProvider>(context,listen: false).changeInFav(provider.inFav);
                                         // Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: provider.data['id']) ;
@@ -237,7 +241,9 @@ class _CardDetailsState extends State<CardDetails> {
                                   word:  Provider.of<ProductDetailsProvider >(context).isCart?'Delete From Basket' : 'Add To Basket',
                                   fun: ()  {
 
-                                    Provider.of<CartProvider >(context,listen: false).addToCarts(productId:provider.data['id']);
+                                    Provider.of<CartProvider >(context,listen: false).addToCarts(productId:provider.data['id'],
+                                 token:    Provider.of<AuthProvider>(context,listen: false).token
+                                    );
                                     Provider.of<ProductDetailsProvider >(context,listen: false).changeInCart(
 
 

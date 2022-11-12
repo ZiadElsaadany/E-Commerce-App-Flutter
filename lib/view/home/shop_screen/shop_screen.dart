@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 
+import '../../../providers/authProvider.dart';
 import '../../../providers/cart_provider.dart';
 
 class ShopScreen extends StatefulWidget {
@@ -101,6 +102,7 @@ final List<Color> colors  =const [ Color(0xffF7A593), Color(0xffF8A44C), Color(0
                                   return GestureDetector(
                                     onTap: () {
                                       provider.getProductsFromCategories(
+                                          token:    Provider.of<AuthProvider>(context,listen: false).token,
                                           id: provider.categoryTypes[index]['id']);
                                       provider.getNameCategory(name: provider.categoryTypes[index]['name']);
                                     },

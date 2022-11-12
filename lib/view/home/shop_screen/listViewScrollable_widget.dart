@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/product_model/Products.dart';
+import '../../../providers/authProvider.dart';
 import '../../../providers/cart_provider.dart';
 import '../../card_details/card_widget.dart';
 
@@ -38,7 +39,9 @@ class ListViewScrollable extends StatelessWidget {
           builder: (BuildContext context) {
             return InkWell(
               onTap: ( ) { 
-                Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: i.id);
+                Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(
+                    token:    Provider.of<AuthProvider>(context,listen: false).token,
+                    id: i.id);
 
 
                 Navigator.push(context, MaterialPageRoute(builder: (ctx)

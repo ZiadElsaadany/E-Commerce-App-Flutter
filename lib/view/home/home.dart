@@ -7,6 +7,7 @@ import 'package:e_commerce_intern/view/home/shop_screen/shop_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import '../../providers/authProvider.dart';
 import '../../providers/home_provider.dart';
 import 'account/account_screen.dart';
 import 'explore_screen/explore_screen.dart';
@@ -29,7 +30,10 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     Future.delayed(Duration.zero, () async {
-      Provider.of<HomeProvider>(context, listen: false).getHomeProduct();
+      Provider.of<HomeProvider>(context, listen: false).getHomeProduct(
+
+        token:    Provider.of<AuthProvider>(context,listen: false).token,
+      );
       Provider.of<HomeProvider>(context, listen: false).getCategories();
     });
     super.initState();

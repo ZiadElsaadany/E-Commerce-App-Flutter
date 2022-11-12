@@ -30,7 +30,6 @@ register( {required String name, required String phoneNumber ,required String em
     if(response.statusCode == 200  )  {
       if(json.decode(response.body)['status'] == true) {
         statusRegister = false;
-        token=json.decode(response.body)['data']['token'];
         notifyListeners();
         ConstantApp().toast(msg: json.decode(response.body)['message'],color: Colors.green);
       }else {
@@ -70,6 +69,7 @@ Future<bool>  login ( {required String email , required String pass}  ) async{
     if(res.statusCode == 200 ) {
       print (json.decode(res.body)['message']);
       if(json.decode(res.body)['status'] == true) {
+        token=json.decode(res.body)['data']['token'];
         statusLogin =false;
         notifyListeners();
         ConstantApp().toast(msg: json.decode(res.body)['message'],color: Colors.green,);

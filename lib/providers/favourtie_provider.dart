@@ -12,14 +12,14 @@ class Favourite extends ChangeNotifier {
 
 
   bool loadingWhenGet= false;
-  getFavourite( ) async{
+  getFavourite( {required String token}  ) async{
     fav= [] ;
     try {
       loadingWhenGet = true;
       notifyListeners();
       http.Response res  = await http.get(Uri.parse('https://student.valuxapps.com/api/favorites'),
           headers: {
-            "Authorization":"j2IlQRjXyjcaDFLHPGSstHIOV29kF9jPscE3f0kOsIRCllu3o60aicxltFBBTWDiUtx5SY"
+            "Authorization":token
           }
       );
       if(res.statusCode == 200) {
@@ -48,7 +48,7 @@ class Favourite extends ChangeNotifier {
 
 
   bool loadingWhenPost = false;
-  addToFav({  required num? productId } ) async {
+  addToFav({  required num? productId ,required String token} ) async {
 
     try {
       loadingWhenPost = true;
@@ -58,7 +58,7 @@ class Favourite extends ChangeNotifier {
             "product_id": '$productId'
           },
           headers: {
-            "Authorization":"j2IlQRjXyjcaDFLHPGSstHIOV29kF9jPscE3f0kOsIRCllu3o60aicxltFBBTWDiUtx5SY"
+            "Authorization":token
           }
       );
       if(res.statusCode == 200 )  {

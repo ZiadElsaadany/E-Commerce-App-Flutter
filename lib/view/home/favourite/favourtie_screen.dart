@@ -1,4 +1,5 @@
 import 'package:e_commerce_intern/animation/fade_animation.dart';
+import 'package:e_commerce_intern/providers/authProvider.dart';
 import 'package:e_commerce_intern/providers/cart_provider.dart';
 import 'package:e_commerce_intern/providers/favourtie_provider.dart';
 import 'package:e_commerce_intern/providers/product_details_provider.dart';
@@ -25,7 +26,9 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
     // TODO: implement initState
     super.initState();
     Future.delayed(Duration.zero, ( ) async {
-      Provider.of<Favourite>(context,listen: false).getFavourite();
+      Provider.of<Favourite>(context,listen: false).getFavourite(
+          token:    Provider.of<AuthProvider>(context,listen: false).token
+      );
     } ) ;
   }
   @override
@@ -66,7 +69,10 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                         height: MediaQuery.of(context).size.height*0.20 ,
                         child: SizedBox(child: GestureDetector(
                           onTap: ( ) {
-                            Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id:
+                            Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(
+                                token:    Provider.of<AuthProvider>(context,listen: false).token,
+
+                                id:
                             Provider.of<Favourite>(context,listen: false).fav[index]['product'] ['id']
                             );
                             Navigator.pushNamed(context, CardDetails.id);
@@ -76,8 +82,12 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
 
 
                             onDismissed: ( direction) async{
-                             await Provider.of<Favourite>(context,listen: false).addToFav(productId: Provider.of<Favourite>(context,listen: false).fav[index]['product'] ['id']);
-                              // Provider.of<Favourite>(context,listen: false).getFavourite() ;
+                             await Provider.of<Favourite>(context,listen: false).addToFav(
+                                 token:    Provider.of<AuthProvider>(context,listen: false).token,
+                                 productId: Provider.of<Favourite>(context,listen: false).fav[index]['product'] ['id']);
+                              Provider.of<Favourite>(context,listen: false).getFavourite(
+                                token:    Provider.of<AuthProvider>(context,listen: false).token,
+                              ) ;
                               setState(() {});
                             },
                             background:Container(
@@ -118,14 +128,16 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                         ))
                     ))),
           ),
-          SizedBox(
-              width: double.infinity,
-              child: CustomButton(word: 'Add All To Cart', fun: (){
-                      for(int i = 0; i<Provider.of<Favourite>(context,listen: false).fav.length ; i++ ) {
-                        Provider.of<CartProvider>(context,listen: false).addToCarts(productId: Provider.of<Favourite>(context,listen: false).fav[i]['product'] ['id']);
-                      }
-              }
-              ,)),
+          // SizedBox(
+          //     width: double.infinity,
+          //     child: CustomButton(word: 'Add All To Cart', fun: (){
+          //             for(int i = 0; i<Provider.of<Favourite>(context,listen: false).fav.length ; i++ ) {
+          //               Provider.of<CartProvider>(context,listen: false).addToCarts(
+          //                   token: Provider.of<AuthProvider>(context,listen: false).token,
+          //                   productId: Provider.of<Favourite>(context,listen: false).fav[i]['product'] ['id']);
+          //             }
+          //     }
+          //     ,)),
           SizedBox(height: MediaQuery.of(context).size.height*0.02,),
 
         ],

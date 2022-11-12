@@ -27,7 +27,7 @@ class HomeProvider extends ChangeNotifier{
  }
 
 
-  getHomeProduct (  ) async{
+  getHomeProduct (  {required String token } ) async{
     loading =true;
     notifyListeners();
     try {
@@ -35,7 +35,7 @@ class HomeProvider extends ChangeNotifier{
       http.Response res = await http.get(
           Uri.parse('https://student.valuxapps.com/api/home'),
           headers: {
-            "Authorization":"j2IlQRjXyjcaDFLHPGSstHIOV29kF9jPscE3f0kOsIRCllu3o60aicxltFBBTWDiUtx5SY"
+            "Authorization":token
           }
       );
       print ('finish try');
@@ -103,7 +103,7 @@ notifyListeners() ;
 
 
   bool loadingFromCategory = false;
-  getProductsFromCategories({required int id }) async {
+  getProductsFromCategories({required int id ,required String token}) async {
     productsFromCategory = [] ;
     loadingFromCategory = true ;
     try {
@@ -113,7 +113,7 @@ notifyListeners() ;
       http.Response res = await http.get(
           Uri.parse('https://student.valuxapps.com/api/products?category_id=$id') ,
           headers: {
-            "Authorization":"j2IlQRjXyjcaDFLHPGSstHIOV29kF9jPscE3f0kOsIRCllu3o60aicxltFBBTWDiUtx5SY"
+            "Authorization":token
           }
       );
       productsFromCategory = json.decode(res.body)['data']['data']  ;

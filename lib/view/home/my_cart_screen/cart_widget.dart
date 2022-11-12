@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/cart_model/cart_model.dart';
+import '../../../providers/authProvider.dart';
 import '../../../providers/cart_provider.dart';
 
 
@@ -92,8 +93,13 @@ class CartWidget extends StatelessWidget {
 
 
                 onPressed: ( ) {
-                  Provider.of<CartProvider >(context,listen: false).addToCarts(productId:cartModel.id);
-                  Provider.of<CartProvider >(context,listen: false).getCarts();
+                  Provider.of<CartProvider >(context,listen: false).addToCarts(
+                      token: Provider.of<AuthProvider>(context,listen: false).token,
+                      productId:cartModel.id);
+                  Provider.of<CartProvider >(context,listen: false).getCarts(
+                      token: Provider.of<AuthProvider>(context,listen: false).token
+
+                  );
 
                 },
                 ),

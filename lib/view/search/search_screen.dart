@@ -1,6 +1,7 @@
 import 'package:e_commerce_intern/providers/search_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../providers/authProvider.dart';
 import '../../providers/product_details_provider.dart';
 
 
@@ -21,7 +22,9 @@ class _SearchScreenState extends State<SearchScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<SearchProvider>(context,listen: false).search(word: '');
+    Provider.of<SearchProvider>(context,listen: false).search(
+        token:    Provider.of<AuthProvider>(context,listen: false).token,
+        word: '');
   }
   @override
   Widget build(BuildContext context) {
@@ -39,10 +42,14 @@ class _SearchScreenState extends State<SearchScreen> {
         children: [
           TextFormField(
             onChanged: (value )  {
-              Provider.of<SearchProvider>(context,listen: false).search(word: value);
+              Provider.of<SearchProvider>(context,listen: false).search(
+                  token:    Provider.of<AuthProvider>(context,listen: false).token,
+                  word: value);
             } ,
               onFieldSubmitted: (value) {
-                Provider.of<SearchProvider>(context,listen: false).search(word: value);
+                Provider.of<SearchProvider>(context,listen: false).search(
+                    token:    Provider.of<AuthProvider>(context,listen: false).token,
+                    word: value);
               } ,
             decoration: InputDecoration(
               labelText: 'Search',
@@ -71,10 +78,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 color: ConstantApp.greenColor,
               ),
             )  :
-            Provider.of<SearchProvider>(context).datta.isEmpty  ?
-
-            Center(child: Image.asset('assets/images/noFavpng.png'))
-                : GridView.builder(
+           GridView.builder(
               physics: BouncingScrollPhysics(),
                 gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2 ,
@@ -86,7 +90,9 @@ class _SearchScreenState extends State<SearchScreen> {
                 itemBuilder: (ctx ,index )  {
               return   GestureDetector(
                 onTap:  ( )  {
-                  Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id:  Provider.of<SearchProvider>(context,listen: false).datta[index]['id']);
+                  Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(
+                      token:    Provider.of<AuthProvider>(context,listen: false).token,
+                      id:  Provider.of<SearchProvider>(context,listen: false).datta[index]['id']);
                   Navigator.push(context, MaterialPageRoute(builder: (ctx)
                   {
                     return CardDetails();
