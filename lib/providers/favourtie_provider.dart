@@ -25,7 +25,7 @@ class Favourite extends ChangeNotifier {
       if(res.statusCode == 200) {
         loadingWhenGet = false;
         notifyListeners();
-        fav = json.decode(res.body)['data']['data'];
+        fav.addAll(json.decode(res.body)['data']['data'] ) ;
         notifyListeners();
       }else {
         loadingWhenGet = false;
@@ -48,7 +48,7 @@ class Favourite extends ChangeNotifier {
 
 
   bool loadingWhenPost = false;
-  addToFav({  required num? productId ,required String token} ) async {
+  Future addToFav({  required num? productId ,required String token} ) async {
 
     try {
       loadingWhenPost = true;

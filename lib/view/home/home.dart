@@ -1,4 +1,5 @@
 import 'package:e_commerce_intern/providers/bottomNavProvider.dart';
+import 'package:e_commerce_intern/providers/favourtie_provider.dart';
 import 'package:e_commerce_intern/providers/profile_provider.dart';
 
 import 'package:e_commerce_intern/utls/app_constant.dart';
@@ -41,7 +42,12 @@ class _HomeState extends State<Home> {
       Provider.of<ProfileProvider>(context, listen: false).getProfile(
         token:    Provider.of<AuthProvider>(context,listen: false).token
       );
+      Provider.of<Favourite>(context,listen: false).getFavourite(
+      token:    Provider.of<AuthProvider>(context,listen: false).token
+
+      );
     });
+
     super.initState();
   }
 

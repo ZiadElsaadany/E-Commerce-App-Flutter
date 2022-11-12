@@ -82,16 +82,16 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                       },
                       child: Dismissible(
                         key: UniqueKey( ) ,
-
-
                         onDismissed: ( direction) {
                            Provider.of<Favourite>(context,listen: false).addToFav(
-                              token:    Provider.of<AuthProvider>(context,listen: false).token,
-                              productId: Provider.of<Favourite>(context,listen: false).fav[index]['product'] ['id']);
-                               Provider.of<Favourite>(context,listen: false).getFavourite(
-                            token:    Provider.of<AuthProvider>(context,listen: false).token,
-                          ) ;
-                          setState(() {});
+                               token:    Provider.of<AuthProvider>(context,listen: false).token,
+                              productId: Provider.of<Favourite>(context,listen: false).fav[index]['product'] ['id']).then((value) {
+                             Provider.of<Favourite>(context,listen: false).getFavourite(
+                               token:    Provider.of<AuthProvider>(context,listen: false).token,
+                             ) ;
+                           });
+
+
                         },
                         background:Container(
                           alignment: Alignment.centerLeft,

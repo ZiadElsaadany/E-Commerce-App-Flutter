@@ -16,6 +16,8 @@ import '../../providers/cart_provider.dart';
 class CardDetails extends StatefulWidget {
   static const String id = 'cardDetails';
 
+  const CardDetails({Key? key}) : super(key: key);
+
   @override
   State<CardDetails> createState() => _CardDetailsState();
 }
@@ -51,7 +53,7 @@ class _CardDetailsState extends State<CardDetails> {
                     ),
                   )
                 : ListView(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     children: [
                       FadeAnimation(1.2,
                           child: CarouselSlider(
@@ -63,8 +65,8 @@ class _CardDetailsState extends State<CardDetails> {
                               enableInfiniteScroll: true,
                               reverse: false,
                               autoPlay: true,
-                              autoPlayInterval: Duration(seconds: 5),
-                              autoPlayAnimationDuration: Duration(seconds: 2),
+                              autoPlayInterval: const Duration(seconds: 5),
+                              autoPlayAnimationDuration: const Duration(seconds: 2),
                               autoPlayCurve: Curves.easeInOutCubic,
                               enlargeCenterPage: true,
                               scrollDirection: Axis.horizontal,
@@ -88,7 +90,7 @@ class _CardDetailsState extends State<CardDetails> {
                           ),
                       ),
 //
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Padding(
@@ -101,13 +103,16 @@ class _CardDetailsState extends State<CardDetails> {
                               children: [
                                 Expanded(
                                   child: IconButton(
-                                      onPressed: () {
+                                      onPressed: ()  {
                                         Provider.of<Favourite>(context,
                                             listen: false)
                                             .addToFav(
                                             token:    Provider.of<AuthProvider>(context,listen: false).token,
                                             productId: provider.data['id']);
                                         Provider.of<ProductDetailsProvider>(context,listen: false).changeInFav(provider.inFav);
+                                        Provider.of<Favourite>(context,listen: false).getFavourite(
+                                          token:    Provider.of<AuthProvider>(context,listen: false).token,
+                                        ) ;
                                         // Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: provider.data['id']) ;
                                       },
                                       icon: Icon(
@@ -136,13 +141,13 @@ class _CardDetailsState extends State<CardDetails> {
                             ),
                             Row(
                               children: [
-                                MinusPlusWidget(),
-                                Spacer(),
+                                const MinusPlusWidget(),
+                                const Spacer(),
                                 Column(
                                   children: [
                                     Text(
                                         'old Price: \$${provider.data['old_price']}',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 15,
                                             color: Colors.grey)),
@@ -155,7 +160,7 @@ class _CardDetailsState extends State<CardDetails> {
                                             fontSize: 18)),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 15,
                                 ),
                                 Text(
@@ -195,7 +200,7 @@ class _CardDetailsState extends State<CardDetails> {
                                     provider.data['description'].trim(),
                                     textDirection: TextDirection.ltr,
                                     textAlign: TextAlign.end,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 17),
                                   ),
@@ -205,7 +210,7 @@ class _CardDetailsState extends State<CardDetails> {
                                 setState(() => _customTileExpanded = expanded);
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Row(
