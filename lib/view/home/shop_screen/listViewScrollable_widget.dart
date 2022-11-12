@@ -40,6 +40,7 @@ class ListViewScrollable extends StatelessWidget {
               onTap: ( ) { 
                 Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: i.id);
 
+
                 Navigator.push(context, MaterialPageRoute(builder: (ctx)
                 {
                   return CardDetails();

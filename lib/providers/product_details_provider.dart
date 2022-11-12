@@ -7,7 +7,29 @@ import 'package:http/http.dart' as http;
 class ProductDetailsProvider extends ChangeNotifier {
 
   Map data = {};
+  bool  inFav = false  ;
+  bool isCart  =false;
 
+  changeInFav (bool isCheck ) {
+    if(isCheck )  {
+      inFav = false;
+      notifyListeners();
+    }else  {
+      inFav =true;
+      notifyListeners() ;
+    }
+    notifyListeners() ;
+  }
+  changeInCart (bool isCheck ) {
+    if(isCheck )  {
+      isCart = false;
+      notifyListeners();
+    }else  {
+      isCart =true;
+      notifyListeners() ;
+    }
+    notifyListeners() ;
+  }
   showProductDetails( {required num? id} ) async{
     data = { } ;
 try {
@@ -19,7 +41,8 @@ try {
   );
   if(res.statusCode == 200 ) {
   data.addAll(json.decode(res.body)['data']);
-
+inFav = json.decode(res.body)['data']['in_favorites'];
+isCart = json.decode(res.body)['data']['in_cart'] ;
   notifyListeners();
   print (data) ;
   }

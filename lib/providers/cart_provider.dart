@@ -11,6 +11,8 @@ class CartProvider extends ChangeNotifier{
 
 
 bool loading= false;
+
+
 Map datta ={ };
 late bool inCart;
 

@@ -26,6 +26,15 @@ class _HomeState extends State<Home> {
     FavouriteScreen(),
     AccountScreen()
   ];
+  @override
+  void initState() {
+    Future.delayed(Duration.zero, () async {
+      Provider.of<HomeProvider>(context, listen: false).getHomeProduct();
+      Provider.of<HomeProvider>(context, listen: false).getCategories();
+    });
+    super.initState();
+  }
+
 
 
   @override

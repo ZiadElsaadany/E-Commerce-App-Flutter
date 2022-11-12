@@ -77,7 +77,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
 
                             onDismissed: ( direction) async{
                              await Provider.of<Favourite>(context,listen: false).addToFav(productId: Provider.of<Favourite>(context,listen: false).fav[index]['product'] ['id']);
-                              Provider.of<Favourite>(context,listen: false).getFavourite() ;
+                              // Provider.of<Favourite>(context,listen: false).getFavourite() ;
                               setState(() {});
                             },
                             background:Container(

@@ -22,14 +22,8 @@ class _ShopScreenState extends State<ShopScreen> {
 final   List<String> images= [ 'assets/images/technology-removebg-preview.png', 'assets/images/korona-removebg-preview.png','assets/images/sports-removebg-preview.png',
 'assets/images/enara.png', 'assets/images/clothes.png'
 ];
-@override
-void initState() {
-  Future.delayed(Duration.zero, () async {
-    Provider.of<HomeProvider>(context, listen: false).getHomeProduct();
-    Provider.of<HomeProvider>(context, listen: false).getCategories();
-  });
-  super.initState();
-}
+final List<Color> colors  =const [ Color(0xffF7A593), Color(0xffF8A44C), Color(0xff53B175), Color(0xffD3B0E0), Color(0xffB7DFF5)];
+
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +109,8 @@ void initState() {
                                       width: MediaQuery.of(context).size.width * 0.7,
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(20),
-                                          color: Color(0xffF7A593).withOpacity(0.25)),
+                                          border: Border.all(color: colors[index]),
+                                          color: colors[index].withOpacity(0.25)),
                                       child: Row(
                                         children: [
                                           SizedBox(
@@ -146,7 +141,7 @@ void initState() {
                                 },
                                 separatorBuilder: (ctx, index) {
                                   return SizedBox(
-                                    width: 5,
+                                    width: 10,
                                   );
                                 },
                                 itemCount: provider.categoryTypes.length),

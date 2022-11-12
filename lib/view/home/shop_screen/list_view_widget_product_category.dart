@@ -43,6 +43,7 @@ class ListViewWidgetProductCategory extends StatelessWidget {
                   return GestureDetector(
                     onTap: ( ) {
                       Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: i['id']);
+
                       // Provider.of<HomeProvider>(context,listen: false).getNameCategory(name: i['name']);
                       Navigator.push(context, MaterialPageRoute(builder: (ctx) {
                         return CardDetails() ;

@@ -30,6 +30,13 @@ class _CardDetailsState extends State<CardDetails> {
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
           elevation: 0,
+          leading: IconButton(
+            onPressed: () {
+               Provider.of<CartProvider>(context,listen: false).getCarts();
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios),
+          ),
         ),
         body: SafeArea(
           child:
@@ -96,10 +103,11 @@ class _CardDetailsState extends State<CardDetails> {
                                             listen: false)
                                             .addToFav(
                                             productId: provider.data['id']);
-                                        Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: provider.data['id']) ;
+                                        Provider.of<ProductDetailsProvider>(context,listen: false).changeInFav(provider.inFav);
+                                        // Provider.of<ProductDetailsProvider>(context,listen: false).showProductDetails(id: provider.data['id']) ;
                                       },
                                       icon: Icon(
-                                        provider.data["in_favorites"] ?  Icons.favorite  :  Icons.favorite_border_outlined,
+                                        provider.inFav ?  Icons.favorite  :  Icons.favorite_border_outlined,
                                         size: 30,
                                         color: Colors.red,
                                       )),
@@ -225,15 +233,16 @@ class _CardDetailsState extends State<CardDetails> {
                                         color: ConstantApp.greenColor,
                                       ),
                                     ):
-                Provider.of<ProductDetailsProvider>(context).data['in_cart']==null ? Center(child: const CircularProgressIndicator()) :     CustomButton(
-                                  word: Provider.of<ProductDetailsProvider>(context).data['in_cart'] && Provider.of<ProductDetailsProvider>(context).data['in_cart']!=null?'Delete From Basket' : 'Add To Basket',
+             CustomButton(
+                                  word:  Provider.of<ProductDetailsProvider >(context).isCart?'Delete From Basket' : 'Add To Basket',
                                   fun: ()  {
-                                    print (Provider.of<ProductDetailsProvider>(context,listen: false).data['in_cart']);
 
                                     Provider.of<CartProvider >(context,listen: false).addToCarts(productId:provider.data['id']);
-                                     Provider.of<ProductDetailsProvider >(context,listen: false).showProductDetails(id: provider.data['id']);
-                                    print (Provider.of<ProductDetailsProvider>(context,listen: false).data['in_cart']);
-                                    Provider.of<CartProvider >(context,listen: false).getCarts();
+                                    Provider.of<ProductDetailsProvider >(context,listen: false).changeInCart(
+
+
+                                        Provider.of<ProductDetailsProvider >(context,listen: false).isCart
+                                    );
 
                                   },
                                 )),

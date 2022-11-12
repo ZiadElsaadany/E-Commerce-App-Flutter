@@ -2,6 +2,7 @@ import 'package:e_commerce_intern/models/product_model/Product_model.dart';
 import 'package:e_commerce_intern/providers/cart_provider.dart';
 import 'package:e_commerce_intern/providers/product_details_provider.dart';
 import 'package:e_commerce_intern/view/card_details/card_details_screen.dart';
+import 'package:e_commerce_intern/view/home/my_cart_screen/cart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -59,26 +60,29 @@ final Products product;
               ),
             ),
 
-            Expanded(
-              flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text('\$${product.price}',style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                      color: Colors.black.withOpacity(0.6),
-                    fontSize: 16
-                  ),),
-                  GestureDetector(
-                      onTap: ( )  {
-                        Provider.of<CartProvider >(context,listen: false).addToCarts(productId: product.id??0);
-                        Provider.of<ProductDetailsProvider >(context,listen: false).showProductDetails(id:product.id);
-                      } ,
-                      child: Image.asset('assets/images/img_10.png',width: MediaQuery.of(context).size.width*0.08,))
-
-                ],
-              ),
-            )
+            // Expanded(
+            //   flex: 2,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //     children: [
+            //       Text('\$${product.price}',style: TextStyle(
+            //         fontWeight: FontWeight.bold,
+            //           color: Colors.black.withOpacity(0.6),
+            //         fontSize: 16
+            //       ),),
+            //       GestureDetector(
+            //           onTap: ( )  {
+            //             Provider.of<CartProvider >(context,listen: false).addToCarts(productId: product.id??0);
+            //             Provider.of<ProductDetailsProvider>(context,listen: false).changeInCart(product.inCart??false);
+            //           } ,
+            //           child:
+            //           Provider.of<ProductDetailsProvider>(context).isCart?
+            //               Icon(Icons.minimize):
+            //           Image.asset('assets/images/img_10.png',width: MediaQuery.of(context).size.width*0.08,))
+            //
+            //     ],
+            //   ),
+            // )
           ],
         ),
       ),

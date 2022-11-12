@@ -1,9 +1,6 @@
-import 'dart:ffi';
 
-import 'package:e_commerce_intern/models/product_model/Product_model.dart';
 import 'package:e_commerce_intern/providers/home_provider.dart';
 import 'package:e_commerce_intern/utls/app_constant.dart';
-import 'package:e_commerce_intern/view/card_details/card_widget.dart';
 import 'package:e_commerce_intern/view/home/explore_screen/explore_screen.dart';
 import 'package:e_commerce_intern/view/home/home.dart';
 import 'package:e_commerce_intern/view/home/shop_screen/card_widget_category.dart';
@@ -15,6 +12,8 @@ import '../card_details/card_details_screen.dart';
 
 class CategoryDetails extends StatelessWidget {
 static const String id= 'CategoriesDet';
+
+  const CategoryDetails({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
    CategoryDetailsModel args = ModalRoute.of(context)!.settings.arguments as CategoryDetailsModel;
@@ -85,6 +84,7 @@ static const String id= 'CategoriesDet';
                     img: context.read<HomeProvider>().productsFromCategory[index]['image'],
                     name: context.read<HomeProvider>().productsFromCategory[index]['name'],
                     price: context.read<HomeProvider>().productsFromCategory[index]['price'],
+                    id:context.read<HomeProvider>().productsFromCategory[index]['id'] ,
                   ),
                 )  ,
                 itemCount: Provider.of<HomeProvider>(context).productsFromCategory.length,

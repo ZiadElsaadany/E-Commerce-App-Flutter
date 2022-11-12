@@ -60,7 +60,7 @@ class CardWidgetCategory extends StatelessWidget {
                         textAlign: TextAlign.end,
                         style: TextStyle(
                             color: Colors.black.withOpacity(0.5), fontWeight: FontWeight.bold),
-                        maxLines: 1,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         // textDirection: TextDirection.rtl,
                       ),
@@ -69,31 +69,34 @@ class CardWidgetCategory extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    '\$$price',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16,color: Colors.black.withOpacity(0.6)),
-                  ),
-                  GestureDetector(
-                    onTap: (){
-                      Provider.of<CartProvider >(context,listen: false).addToCarts(productId:id??0);
-                      Provider.of<ProductDetailsProvider >(context,listen: false).showProductDetails(id: id);
-
-                      // Provider.of<CartProvider>(context,listen: false).getCar;
-
-                    },
-                    child:   Image.asset(
-                      'assets/images/img_10.png',
-                      width: MediaQuery.of(context).size.width * 0.08,
-                    ),
-                  )
-                ],
-              ),
-            )
+            // Expanded(
+            //   flex: 2,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //     children: [
+            //       Text(
+            //         '\$$price',
+            //         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16,color: Colors.black.withOpacity(0.6)),
+            //       ),
+            //       Builder(
+            //         builder: (context) {
+            //           return GestureDetector(
+            //             onTap: (){
+            //               Provider.of<CartProvider >(context,listen: false).addToCarts(productId:id);
+            //
+            //               // Provider.of<CartProvider>(context,listen: false).getCar;
+            //
+            //             },
+            //             child:   Image.asset(
+            //               'assets/images/img_10.png',
+            //               width: MediaQuery.of(context).size.width * 0.08,
+            //             ),
+            //           );
+            //         }
+            //       )
+            //     ],
+            //   ),
+            // )
           ],
         ),
       ),
